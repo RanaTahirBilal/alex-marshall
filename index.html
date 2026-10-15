@@ -1,0 +1,1085 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Alexander Marshall</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Alexander Marshall is a New York entrepreneur in consulting, growth operations and relationship management. One conversation at nineteen changed the direction of his life. This is the story behind the work.">
+<meta name="author" content="Alexander Marshall">
+<meta name="theme-color" content="#1d1c1a">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Alexander Marshall">
+<meta property="og:description" content="One conversation at nineteen changed the direction of his life. The story behind the work of a New York entrepreneur in consulting, growth operations and relationship management.">
+<meta property="og:site_name" content="Alexander Marshall">
+<meta property="profile:first_name" content="Alexander">
+<meta property="profile:last_name" content="Marshall">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Alexander Marshall">
+<meta name="twitter:description" content="One conversation at nineteen changed the direction of his life. This is the story behind the work.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;1,400&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Alexander Marshall",
+  "description": "Entrepreneur in consulting, growth operations and relationship management, based in New York.",
+  "address": { "@type": "PostalAddress", "addressLocality": "New York", "addressRegion": "NY", "addressCountry": "US" },
+  "knowsAbout": ["Consulting", "Growth operations", "Relationship management", "Sales", "Business development"]
+}
+</script>
+<style>
+/* Layout concept: a documentary in chapters. Charcoal bands hold the moments that happened; ivory bands hold what he made of them. */
+:root {
+  --charcoal: #1d1c1a;
+  --charcoal-2: #262421;
+  --charcoal-3: #121110;
+  --ivory: #f2ede3;
+  --ivory-2: #e7e0d2;
+  --ink: #1d1c1a;
+  --ink-soft: #57524a;
+  --on-dark: #efe9de;
+  --on-dark-soft: #aaa293;
+  --brass: #b8925a;
+  --brass-ink: #7a5c2c;
+  --rule-light: rgba(29, 28, 26, 0.16);
+  --rule-dark: rgba(239, 233, 222, 0.14);
+
+  --display: "Libre Caslon Display", "Libre Caslon Text", Georgia, "Times New Roman", serif;
+  --serif: "Libre Caslon Text", Georgia, "Times New Roman", serif;
+  --sans: "Hanken Grotesk", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+  --step--1: clamp(0.78rem, 0.76rem + 0.1vw, 0.84rem);
+  --step-0: clamp(1.02rem, 0.98rem + 0.2vw, 1.14rem);
+  --step-1: clamp(1.2rem, 1.1rem + 0.45vw, 1.45rem);
+  --step-2: clamp(1.55rem, 1.3rem + 1.1vw, 2.2rem);
+  --step-3: clamp(2.1rem, 1.6rem + 2.4vw, 3.6rem);
+  --step-4: clamp(2.7rem, 1.8rem + 4.4vw, 5.6rem);
+  --step-5: clamp(3.2rem, 1.9rem + 6.6vw, 8rem);
+
+  --band-y: clamp(72px, 11vw, 168px);
+  --measure: 34rem;
+  color-scheme: light;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--ivory);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: var(--step-0);
+  line-height: 1.65;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px);
+  z-index: 10;
+  background: var(--charcoal);
+}
+img { max-width: 100%; display: block; }
+p { margin: 0; }
+h1, h2, h3 { margin: 0; font-weight: 400; text-wrap: balance; }
+a { color: inherit; }
+::selection { background: var(--brass); color: var(--charcoal); }
+:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; border-radius: 2px; }
+
+.skip {
+  position: absolute; left: 16px; top: -60px; z-index: 20;
+  background: var(--brass); color: var(--charcoal);
+  padding: 10px 14px; font-weight: 600; text-decoration: none;
+}
+.skip:focus { top: calc(12px + env(safe-area-inset-top, 0px)); }
+
+/* Bands and wrappers */
+.band { position: relative; }
+.band--dark { background: var(--charcoal); color: var(--on-dark); }
+.band--dark-2 { background: var(--charcoal-2); color: var(--on-dark); }
+.band--ivory { background: var(--ivory); color: var(--ink); }
+.band--ivory-2 { background: var(--ivory-2); color: var(--ink); }
+.wrap {
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: var(--band-y);
+}
+.inner {
+  max-width: 1180px;
+  margin-inline: auto;
+  padding-inline: clamp(0px, 3.5vw, 40px);
+}
+
+/* Shared type */
+.label {
+  font-family: var(--mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.band--dark .label, .band--dark-2 .label { color: var(--brass); }
+.band--ivory .label, .band--ivory-2 .label { color: var(--brass-ink); }
+.soft { color: var(--ink-soft); }
+.band--dark .soft, .band--dark-2 .soft { color: var(--on-dark-soft); }
+.prose { max-width: var(--measure); display: grid; gap: 1.1em; }
+.prose em { font-family: var(--serif); font-style: italic; }
+.lede { font-size: var(--step-1); line-height: 1.5; }
+
+/* Chapter openers */
+.chapter-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 18px;
+  margin-bottom: clamp(48px, 7vw, 96px);
+}
+.chapter-head .numeral {
+  font-family: var(--display);
+  font-size: var(--step-2);
+  line-height: 1;
+  color: var(--brass);
+}
+.band--ivory .chapter-head .numeral, .band--ivory-2 .chapter-head .numeral { color: var(--brass-ink); }
+.chapter-head h2 {
+  font-family: var(--display);
+  font-size: var(--step-4);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  max-width: 14ch;
+}
+@media (min-width: 900px) {
+  .chapter-head { grid-template-columns: 9rem minmax(0, 1fr); align-items: baseline; }
+  .chapter-head .label { grid-column: 2; }
+  .chapter-head .numeral { grid-row: 1 / span 2; grid-column: 1; }
+  .chapter-head h2 { grid-column: 2; }
+}
+
+/* Header */
+.site-head {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 15;
+  background: rgba(29, 28, 26, 0.94);
+  color: var(--on-dark);
+  backdrop-filter: saturate(140%) blur(8px);
+  -webkit-backdrop-filter: saturate(140%) blur(8px);
+  border-bottom: 1px solid var(--rule-dark);
+}
+.site-head .bar {
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 12px;
+}
+.site-head .row {
+  max-width: 1180px; margin-inline: auto; padding-inline: clamp(0px, 3.5vw, 40px);
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+}
+.wordmark {
+  font-family: var(--display);
+  font-size: 1.28rem;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.nav { display: flex; align-items: center; gap: clamp(14px, 2.4vw, 32px); }
+.nav ul { list-style: none; margin: 0; padding: 0; display: none; gap: clamp(14px, 2.2vw, 28px); }
+.nav ul a {
+  font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase;
+  text-decoration: none; color: var(--on-dark-soft); padding-block: 6px;
+  transition: color 0.2s ease;
+}
+.nav ul a:hover { color: var(--on-dark); }
+@media (min-width: 860px) { .nav ul { display: flex; } }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--sans); font-weight: 600; font-size: 0.95rem; letter-spacing: 0.01em;
+  text-decoration: none; padding: 14px 22px; border: 1px solid transparent;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  min-height: 48px;
+}
+.btn svg { width: 14px; height: 14px; flex: none; transition: transform 0.2s ease; }
+.btn:hover svg { transform: translateX(3px); }
+.btn--brass { background: var(--brass); color: var(--charcoal); }
+.btn--brass:hover { background: var(--on-dark); }
+.btn--ghost { border-color: var(--rule-dark); color: var(--on-dark); }
+.btn--ghost:hover { border-color: var(--on-dark); }
+.btn--small { padding: 9px 14px; min-height: 40px; font-size: 0.85rem; }
+.btn--ink { background: var(--charcoal); color: var(--on-dark); }
+.btn--ink:hover { background: var(--brass-ink); }
+
+/* Hero */
+.hero .wrap { padding-block: clamp(56px, 9vw, 128px) clamp(64px, 9vw, 120px); }
+.hero-grid { display: grid; gap: clamp(40px, 6vw, 80px); grid-template-columns: minmax(0, 1fr); align-items: end; }
+@media (min-width: 900px) { .hero-grid { grid-template-columns: minmax(0, 1.45fr) minmax(0, 0.8fr); } }
+.hero h1 {
+  font-family: var(--display);
+  font-size: var(--step-5);
+  line-height: 0.96;
+  letter-spacing: -0.015em;
+  margin-top: 28px;
+}
+.hero h1 .line { display: block; }
+.hero h1 .line:nth-child(2) { padding-left: clamp(0px, 6vw, 96px); font-family: var(--serif); font-style: italic; color: var(--brass); font-size: 0.86em; }
+.hero .intro { margin-top: clamp(28px, 4vw, 44px); max-width: 33rem; color: var(--on-dark-soft); font-size: var(--step-1); line-height: 1.55; }
+.hero .intro strong { color: var(--on-dark); font-weight: 500; }
+.hero .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+
+.portrait {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  max-width: 100%;
+  background:
+    radial-gradient(120% 90% at 30% 20%, rgba(184, 146, 90, 0.10), transparent 60%),
+    var(--charcoal-2);
+  border: 1px solid var(--rule-dark);
+  display: grid; place-items: center;
+  overflow: hidden;
+}
+.portrait { margin: 0; }
+.portrait img, .photo img { width: 100%; height: 100%; object-fit: cover; }
+.portrait::after {
+  content: ""; position: absolute; inset: auto 0 0 0; height: 30%;
+  background: linear-gradient(transparent, rgba(18, 17, 16, 0.75));
+  pointer-events: none;
+}
+.portrait figcaption {
+  position: absolute; left: 16px; right: 16px; bottom: 14px; z-index: 1;
+  font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--on-dark-soft);
+  display: flex; justify-content: space-between; gap: 12px;
+}
+.hero-meta {
+  margin-top: clamp(56px, 8vw, 104px);
+  padding-top: 22px;
+  border-top: 1px solid var(--rule-dark);
+  display: grid; gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+}
+.hero-meta div { display: grid; gap: 4px; }
+.hero-meta span:last-child { color: var(--on-dark); font-size: 0.98rem; }
+
+@keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: no-preference) {
+  .hero h1 .line, .hero .intro, .hero .ctas { animation: rise 0.9s cubic-bezier(.2,.7,.2,1) both; }
+  .hero h1 .line:nth-child(2) { animation-delay: 0.18s; }
+  .hero .intro { animation-delay: 0.34s; }
+  .hero .ctas { animation-delay: 0.46s; }
+}
+
+/* Chapter I: the beginning */
+.story { display: grid; gap: clamp(64px, 9vw, 120px); }
+.beat { display: grid; gap: 18px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 900px) {
+  .beat { grid-template-columns: 9rem minmax(0, 1fr); gap: 0; }
+  .beat > .label { padding-top: 0.55em; }
+  .beat--offset > .body { padding-left: clamp(0px, 10vw, 160px); }
+}
+.beat .body { display: grid; gap: 22px; min-width: 0; }
+.statement {
+  font-family: var(--display);
+  font-size: var(--step-4);
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+.statement--xl { font-size: var(--step-5); }
+.statement .em { font-family: var(--serif); font-style: italic; color: var(--brass); }
+.beat p { max-width: var(--measure); color: var(--on-dark-soft); }
+.beat p.statement { max-width: none; color: var(--on-dark); }
+.beat p strong { color: var(--on-dark); font-weight: 500; }
+
+.facts { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px 26px; }
+.facts li { font-family: var(--mono); font-size: 0.82rem; letter-spacing: 0.06em; color: var(--on-dark); display: inline-flex; align-items: center; gap: 10px; }
+.facts li::before { content: ""; width: 5px; height: 5px; background: var(--brass); border-radius: 50%; }
+
+.quote {
+  margin: 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: var(--step-3);
+  line-height: 1.15;
+  max-width: 22ch;
+}
+.quote::before { content: "\201C"; color: var(--brass); }
+.quote::after { content: "\201D"; color: var(--brass); }
+.band--ivory .quote::before, .band--ivory .quote::after,
+.band--ivory-2 .quote::before, .band--ivory-2 .quote::after { color: var(--brass-ink); }
+.attribution { margin-top: 14px; }
+
+/* The sales board */
+.board {
+  background: var(--charcoal-3);
+  border: 1px solid var(--rule-dark);
+  padding: clamp(18px, 3vw, 32px);
+  display: grid; gap: 18px;
+  max-width: 44rem;
+  box-shadow: 0 30px 60px -30px rgba(0,0,0,0.6);
+}
+.board-top { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.board-top .label { color: var(--on-dark-soft); }
+.tiles { display: flex; flex-wrap: wrap; gap: clamp(4px, 0.8vw, 8px); }
+.tile {
+  position: relative;
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: clamp(1.3rem, 0.6rem + 3.6vw, 4.2rem);
+  line-height: 1;
+  color: var(--on-dark);
+  background: linear-gradient(#2b2926 0 50%, #242220 50% 100%);
+  padding: 0.18em 0.12em;
+  min-width: 0.9em;
+  text-align: center;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,0.5);
+}
+.tile::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: rgba(0,0,0,0.65); }
+.tile--sym { color: var(--brass); }
+.board-foot { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.board-foot .label { color: var(--brass); }
+.board-note { font-size: 0.92rem; color: var(--on-dark-soft); max-width: 40rem; }
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .tile { animation: flip linear both; animation-timeline: view(); animation-range: entry 10% cover 35%; }
+    @keyframes flip { from { transform: rotateX(80deg); opacity: 0.3; } to { transform: none; opacity: 1; } }
+  }
+}
+
+/* Chapter II: ground up */
+.split { display: grid; gap: clamp(40px, 6vw, 80px); grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 900px) { .split { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+
+.shift {
+  margin-top: clamp(56px, 8vw, 104px);
+  display: grid; gap: 0;
+  grid-template-columns: minmax(0, 1fr);
+  border-top: 1px solid var(--rule-light);
+  border-bottom: 1px solid var(--rule-light);
+}
+@media (min-width: 900px) { .shift { grid-template-columns: minmax(0, 1fr) 96px minmax(0, 1fr); } }
+.shift-col { padding-block: clamp(28px, 4vw, 44px); display: grid; gap: 18px; align-content: start; }
+.shift-col h3 { font-family: var(--display); font-size: var(--step-2); line-height: 1.1; }
+.shift-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.shift-col li { padding-block: 12px; border-top: 1px solid var(--rule-light); display: flex; justify-content: space-between; gap: 16px; }
+.shift-col li span:last-child { color: var(--ink-soft); font-size: 0.9rem; text-align: right; }
+.shift-arrow { display: grid; place-items: center; padding-block: 8px; color: var(--brass-ink); }
+.shift-arrow svg { width: 40px; height: 40px; transform: rotate(90deg); }
+@media (min-width: 900px) { .shift-arrow svg { transform: none; } }
+
+.hats { margin-top: clamp(56px, 8vw, 96px); display: grid; gap: 20px; }
+.hats ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 0; }
+.hats li { font-family: var(--display); font-size: var(--step-3); line-height: 1.1; }
+.hats li:not(:last-child)::after { content: ""; display: inline-block; width: 0.16em; height: 0.16em; border-radius: 50%; background: var(--brass-ink); margin-inline: 0.5em; vertical-align: 0.28em; }
+
+/* Chapter III: numbers */
+.ledger { margin-top: 8px; border-top: 2px solid var(--ink); }
+.ledger-row {
+  display: grid; gap: 8px 32px;
+  grid-template-columns: minmax(0, 1fr);
+  padding-block: clamp(22px, 3vw, 32px);
+  border-bottom: 1px solid var(--rule-light);
+}
+@media (min-width: 760px) { .ledger-row { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.15fr) minmax(0, 0.6fr); align-items: baseline; } }
+.ledger-row .fig { font-family: var(--display); font-size: var(--step-3); line-height: 1; font-variant-numeric: lining-nums tabular-nums; }
+.ledger-row .what { font-size: 1rem; max-width: 30rem; }
+.ledger-row .tag { justify-self: start; }
+@media (min-width: 760px) { .ledger-row .tag { justify-self: end; text-align: right; } }
+.ledger-note {
+  margin-top: 28px; display: grid; gap: 10px; max-width: 46rem;
+  font-size: 0.95rem; color: var(--ink-soft);
+}
+
+/* Chapter IV: hardest lessons */
+.lessons-grid { display: grid; gap: clamp(48px, 7vw, 96px); grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 960px) { .lessons-grid { grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); } }
+.lessons-grid .prose p { color: var(--on-dark-soft); }
+.lessons-grid .prose p strong { color: var(--on-dark); font-weight: 500; }
+.ledger-of-costs { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; }
+.ledger-of-costs li { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.06em; padding: 6px 10px; border: 1px solid var(--rule-dark); color: var(--on-dark); }
+
+.rebuild { display: grid; gap: 0; align-content: start; }
+.rebuild-item { display: grid; gap: 8px; padding-block: 26px; border-top: 1px solid var(--rule-dark); }
+.rebuild-item:last-child { border-bottom: 1px solid var(--rule-dark); }
+.rebuild-item h3 { font-family: var(--display); font-size: var(--step-2); line-height: 1.1; }
+.rebuild-item h3 .was { display: block; font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--on-dark-soft); text-decoration: line-through; text-decoration-color: var(--brass); margin-bottom: 10px; }
+.rebuild-item p { color: var(--on-dark-soft); font-size: 0.98rem; max-width: 30rem; }
+
+.wide-quote { margin-top: clamp(64px, 9vw, 120px); display: grid; gap: 14px; max-width: 52rem; }
+.wide-quote .quote { max-width: 26ch; }
+
+/* Chapter V: beyond the numbers */
+.beyond h2 {
+  font-family: var(--display);
+  font-size: var(--step-5);
+  line-height: 0.98;
+  letter-spacing: -0.015em;
+  max-width: 13ch;
+}
+.beyond h2 em { font-family: var(--serif); font-style: italic; color: var(--brass-ink); }
+.definition {
+  margin-top: clamp(56px, 8vw, 112px);
+  display: grid; gap: clamp(32px, 5vw, 64px);
+  grid-template-columns: minmax(0, 1fr);
+}
+@media (min-width: 900px) { .definition { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); align-items: start; } }
+.then-card { display: grid; gap: 16px; padding-top: 18px; border-top: 1px solid var(--rule-light); }
+.then-card .struck {
+  font-family: var(--display); font-size: var(--step-4); line-height: 1;
+  color: var(--ink-soft);
+  text-decoration: line-through; text-decoration-thickness: 0.06em; text-decoration-color: var(--brass-ink);
+}
+.now-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule-light); }
+.now-list li {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px; align-items: baseline;
+  padding-block: clamp(12px, 1.6vw, 18px); border-bottom: 1px solid var(--rule-light);
+}
+.now-list li span:first-child { font-family: var(--display); font-size: var(--step-3); line-height: 1.05; }
+.now-list li span:last-child { color: var(--ink-soft); font-size: 0.9rem; text-align: right; max-width: 16rem; }
+
+.counselor { margin-top: clamp(64px, 9vw, 120px); display: grid; gap: clamp(32px, 5vw, 64px); grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 900px) { .counselor { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+.counselor .phrase { font-family: var(--serif); font-style: italic; font-size: var(--step-3); line-height: 1.1; }
+.counselor .phrase small { display: block; margin-top: 14px; font-family: var(--mono); font-style: normal; font-size: var(--step--1); letter-spacing: 0.12em; text-transform: uppercase; color: var(--brass-ink); }
+
+.advice {
+  margin-top: clamp(72px, 10vw, 140px);
+  padding-top: clamp(40px, 6vw, 72px);
+  border-top: 2px solid var(--ink);
+  display: grid; gap: 24px;
+}
+.advice .big { font-family: var(--display); font-size: var(--step-5); line-height: 0.98; letter-spacing: -0.015em; max-width: 12ch; }
+.advice .cols { display: grid; gap: 24px 48px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 900px) { .advice .cols { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+
+/* Approach */
+.approach-intro { display: grid; gap: clamp(32px, 5vw, 64px); grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 900px) { .approach-intro { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+.principles { margin-top: clamp(48px, 7vw, 88px); display: grid; gap: 0 clamp(32px, 5vw, 72px); grid-template-columns: minmax(0, 1fr); list-style: none; padding: 0; }
+@media (min-width: 760px) { .principles { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+.principles li { display: grid; gap: 6px; padding-block: 22px; border-top: 1px solid var(--rule-light); }
+.principles h3 { font-family: var(--display); font-size: var(--step-1); line-height: 1.25; }
+.principles p { color: var(--ink-soft); font-size: 0.98rem; }
+.motto { margin-top: clamp(48px, 7vw, 88px); display: grid; gap: 12px; }
+.motto .old { font-family: var(--serif); font-style: italic; font-size: var(--step-2); color: var(--ink-soft); text-decoration: line-through; text-decoration-color: var(--brass-ink); }
+.motto .new { font-family: var(--display); font-size: var(--step-3); line-height: 1.08; max-width: 22ch; }
+
+/* Next chapter */
+.next-grid { display: grid; gap: clamp(40px, 6vw, 80px); grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 900px) { .next-grid { grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); align-items: start; } }
+.book {
+  aspect-ratio: 2 / 3;
+  max-width: min(100%, 320px);
+  background: var(--charcoal-3);
+  border: 1px solid var(--rule-dark);
+  box-shadow: 18px 24px 0 -1px var(--charcoal-2), 0 40px 70px -30px rgba(0,0,0,0.7);
+  padding: 28px 24px;
+  display: grid; grid-template-rows: auto 1fr auto; gap: 16px;
+}
+.book .t { font-family: var(--display); font-size: 2rem; line-height: 1.05; align-self: center; color: var(--on-dark); }
+.book .t span { display: block; font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--on-dark-soft); margin-top: 14px; }
+.book .a { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--brass); }
+.next-list { margin-top: 36px; list-style: none; padding: 0; display: grid; }
+.next-list li { padding-block: 20px; border-top: 1px solid var(--rule-dark); display: grid; gap: 6px; }
+.next-list li:last-child { border-bottom: 1px solid var(--rule-dark); }
+.next-list h3 { font-family: var(--display); font-size: var(--step-2); line-height: 1.1; color: var(--on-dark); }
+.next-list p { color: var(--on-dark-soft); max-width: 34rem; }
+
+/* Contact */
+.contact h2 { font-family: var(--display); font-size: var(--step-5); line-height: 0.98; letter-spacing: -0.015em; max-width: 11ch; }
+.contact-grid { margin-top: clamp(40px, 6vw, 72px); display: grid; gap: clamp(40px, 6vw, 80px); grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 900px) { .contact-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+.bring { list-style: none; padding: 0; margin: 10px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.bring li { font-family: var(--display); font-size: var(--step-1); padding: 8px 16px; border: 1px solid var(--rule-light); }
+.channels { display: grid; border-top: 2px solid var(--ink); }
+.channel { display: grid; grid-template-columns: minmax(0, 7rem) minmax(0, 1fr) auto; gap: 12px 20px; align-items: center; padding-block: 18px; border-bottom: 1px solid var(--rule-light); }
+.channel .value { font-size: 1.05rem; overflow-wrap: anywhere; min-width: 0; }
+.channel .value.pending { color: var(--ink-soft); font-family: var(--serif); font-style: italic; }
+.copy-status { min-height: 1.4em; font-size: 0.85rem; color: var(--brass-ink); }
+.corner {
+  margin-top: clamp(56px, 8vw, 96px);
+  padding-top: 28px;
+  border-top: 1px solid var(--rule-light);
+  display: grid; gap: 12px;
+}
+.corner p:not(.label) { font-family: var(--serif); font-style: italic; font-size: var(--step-2); line-height: 1.25; max-width: 32ch; }
+
+/* Photographs */
+.photo { margin: 0; display: grid; gap: 12px; }
+.photo .frame { aspect-ratio: 4 / 5; max-width: 100%; overflow: hidden; background: var(--ivory-2); }
+.photo figcaption { display: flex; justify-content: space-between; gap: 12px; }
+.advice-grid { display: grid; gap: clamp(32px, 5vw, 64px); grid-template-columns: minmax(0, 1fr); align-items: end; }
+@media (min-width: 900px) { .advice-grid { grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.8fr); } }
+.corner-grid { display: grid; gap: clamp(32px, 5vw, 64px); grid-template-columns: minmax(0, 1fr); align-items: center; }
+@media (min-width: 900px) { .corner-grid { grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr); } }
+.corner-grid .photo { max-width: 420px; }
+
+/* Footer */
+.site-foot .wrap { padding-block: 40px calc(40px + env(safe-area-inset-bottom, 0px)); }
+.site-foot .row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; align-items: baseline; }
+.site-foot .wordmark { font-size: 1.1rem; }
+.site-foot a { text-decoration: none; }
+.site-foot a:hover { color: var(--brass); }
+
+/* Placeholder marker, visible only in the build preview */
+[data-placeholder] { position: relative; }
+
+/* Quiet scroll reveal: content is fully visible at rest; supporting browsers ease it in */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal { animation: settle linear both; animation-timeline: view(); animation-range: entry 0% cover 22%; }
+    @keyframes settle { from { opacity: 0.25; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+  }
+}
+</style>
+</head>
+<body>
+
+
+<a class="skip" href="#main">Skip to the story</a>
+
+<header class="site-head">
+  <div class="bar">
+    <div class="row">
+      <a class="wordmark" href="#top" aria-label="Alexander Marshall, back to top">Alexander Marshall</a>
+      <nav class="nav" aria-label="Chapters">
+        <ul>
+          <li><a href="#beginning">The Beginning</a></li>
+          <li><a href="#ground-up">The Work</a></li>
+          <li><a href="#lessons">The Lessons</a></li>
+          <li><a href="#beyond">Beyond the Numbers</a></li>
+        </ul>
+        <a class="btn btn--brass btn--small" href="#contact">Start a Conversation</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- Introduction -->
+  <section class="band band--dark hero" id="top" aria-labelledby="hero-title">
+    <div class="wrap">
+      <div class="inner">
+        <div class="hero-grid">
+          <div>
+            <p class="label">Alexander Marshall &nbsp;·&nbsp; New York</p>
+            <h1 id="hero-title">
+              <span class="line">One conversation</span>
+              <span class="line">changed everything.</span>
+            </h1>
+            <p class="intro">
+              <strong>Alexander Marshall</strong> is an entrepreneur in consulting, growth operations and relationship management. He came up through sales, learned every side of the business by doing it himself, and now builds companies around the people in them. This is the story behind the work.
+            </p>
+            <div class="ctas">
+              <a class="btn btn--brass" href="#contact">Start a Conversation
+                <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 2l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+              </a>
+              <a class="btn btn--ghost" href="#beginning">Explore My Story
+                <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 5l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+              </a>
+            </div>
+          </div>
+          <figure class="portrait">
+            <img src="images/portrait-staircase.jpg" width="900" height="1125" alt="Alexander Marshall in a red velvet blazer and tie, smiling on an office staircase" fetchpriority="high" decoding="async">
+            <figcaption><span>Alexander Marshall</span><span>New York</span></figcaption>
+          </figure>
+        </div>
+        <div class="hero-meta">
+          <div><span class="label">Served</span><span>United States Marine Corps, Honorable Discharge</span></div>
+          <div><span class="label">Works in</span><span>Consulting, growth operations, relationships</span></div>
+          <div><span class="label">Based in</span><span>New York, NY</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chapter I -->
+  <section class="band band--dark" id="beginning" aria-labelledby="ch1-title">
+    <div class="wrap" style="padding-top: 0">
+      <div class="inner">
+        <div class="chapter-head">
+          <span class="numeral" aria-hidden="true">I</span>
+          <p class="label">Chapter One</p>
+          <h2 id="ch1-title">The unexpected beginning</h2>
+        </div>
+
+        <div class="story">
+          <div class="beat reveal">
+            <p class="label">The setting</p>
+            <div class="body">
+              <p class="statement statement--xl">19 years old.</p>
+              <p>After his time in the United States Marine Corps, Alexander was working at <strong>UPS as a part time manager</strong>. He had no five year plan. He was, in his words, trying to figure out what was next.</p>
+            </div>
+          </div>
+
+          <div class="beat beat--offset reveal">
+            <p class="label">An ordinary day</p>
+            <div class="body">
+              <p>One day he went to visit his mother, in an area where he did not even live. Near a bank, he crossed paths with a stranger: a man who traded options and worked on Wall Street.</p>
+              <ul class="facts" aria-label="What he remembers">
+                <li>A bank</li>
+                <li>A Maserati</li>
+                <li>An options trader</li>
+              </ul>
+              <p>The man pulled up in a Maserati. Somehow, they started talking.</p>
+            </div>
+          </div>
+
+          <div class="beat reveal">
+            <p class="label">Ten or fifteen minutes</p>
+            <div class="body">
+              <p class="statement">One <span class="em">unexpected</span> conversation.</p>
+              <p>What should have been a passing exchange became ten or fifteen minutes about business, money, opportunity, and what was possible for someone willing to take a different path.</p>
+              <p>Then came an invitation to see the office, and a condition. If he was serious about making a change, he would have to quit his job. The man <strong>offered him $500 to take the leap.</strong></p>
+            </div>
+          </div>
+
+          <div class="beat beat--offset reveal">
+            <p class="label">The office</p>
+            <div class="body">
+              <p>So he went. Phones were ringing everywhere. Salespeople moved from call to call, closing deals and chasing the next one. At nineteen, the controlled chaos reminded him of The Wolf of Wall Street.</p>
+              <blockquote class="quote">Except this wasn't a movie. This was real.</blockquote>
+            </div>
+          </div>
+
+          <div class="beat reveal">
+            <p class="label">The board</p>
+            <div class="body">
+              <p>He walked over to the board on the wall and read the numbers.</p>
+              <div class="board" role="img" aria-label="The office sales board: more than one hundred thousand dollars in sales in one week">
+                <div class="board-top">
+                  <span class="label">Sales floor</span>
+                  <span class="label">This week</span>
+                </div>
+                <div class="tiles" aria-hidden="true">
+                  <span class="tile tile--sym">$</span><span class="tile">1</span><span class="tile">0</span><span class="tile">0</span><span class="tile tile--sym">,</span><span class="tile">0</span><span class="tile">0</span><span class="tile">0</span><span class="tile tile--sym">+</span>
+                </div>
+                <div class="board-foot">
+                  <span class="label">In weekly sales on the board</span>
+                </div>
+              </div>
+              <p class="board-note">This was the office's total for one week, as shown on its board. It was not Alexander's income or his own sales. What it gave him was a glimpse of a world he had not known existed.</p>
+            </div>
+          </div>
+
+          <div class="beat beat--offset reveal">
+            <p class="label">The decision</p>
+            <div class="body">
+              <blockquote class="quote">I had gone there just to look.</blockquote>
+              <p>Something clicked. The world he had been living in was not the only one. There was a whole universe of business, sales and opportunity, and he wanted to learn all of it.</p>
+            </div>
+          </div>
+
+          <div class="beat reveal">
+            <p class="label">What followed</p>
+            <div class="body">
+              <p class="statement statement--xl">He never went back to <span class="em">UPS.</span></p>
+              <p>None of it was planned. He was not looking for an opportunity and did not live in that neighborhood. He was visiting his mother.</p>
+              <blockquote class="quote" style="max-width: 30ch; font-size: var(--step-2);">Sometimes you don't know you're standing at the beginning of your story until you look back and realize that was the moment everything changed.</blockquote>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chapter II -->
+  <section class="band band--ivory" id="ground-up" aria-labelledby="ch2-title">
+    <div class="wrap">
+      <div class="inner">
+        <div class="chapter-head">
+          <span class="numeral" aria-hidden="true">II</span>
+          <p class="label">Chapter Two</p>
+          <h2 id="ch2-title">Building from the ground up</h2>
+        </div>
+
+        <div class="split">
+          <div class="prose">
+            <p class="lede">What started as a chance encounter turned into years of learning. Alexander did not learn business by managing the people who did the work. He did the work.</p>
+          </div>
+          <div class="prose soft">
+            <p>He sold. He managed accounts. He worked on SEO and built websites. He developed new business and helped run day to day operations. Over time he held almost every seat in the room, from employee to owner.</p>
+            <p>As the businesses grew, his role changed. Because he had done the technical and operational work himself, he understood what it took. That understanding is what lets him focus today on relationships, partnerships and growth.</p>
+          </div>
+        </div>
+
+        <div class="shift reveal" role="group" aria-label="How his role changed over time">
+          <div class="shift-col">
+            <p class="label">Earlier: doing the work</p>
+            <h3>Learning every side of the business</h3>
+            <ul>
+              <li><span>Sales</span><span>Closing, one call at a time</span></li>
+              <li><span>Account management</span><span>Keeping customers</span></li>
+              <li><span>SEO and websites</span><span>Building it by hand</span></li>
+              <li><span>Business development</span><span>Finding the next opportunity</span></li>
+              <li><span>Operations</span><span>Running the day to day</span></li>
+            </ul>
+          </div>
+          <div class="shift-arrow" aria-hidden="true">
+            <svg viewBox="0 0 40 40"><path d="M6 20h26M24 11l9 9-9 9" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
+          </div>
+          <div class="shift-col">
+            <p class="label">Today: growing it through people</p>
+            <h3>Leading with relationships</h3>
+            <ul>
+              <li><span>Relationships</span><span>The center of the work</span></li>
+              <li><span>Client retention</span><span>Value long after the sale</span></li>
+              <li><span>Partnerships</span><span>Connecting the right people</span></li>
+              <li><span>Business development</span><span>Spotting opportunity</span></li>
+              <li><span>Growth</span><span>Keeping the business moving</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="hats">
+          <p class="label">The roles he has held, depending on the company and the stage</p>
+          <ul>
+            <li>Salesperson</li>
+            <li>Account manager</li>
+            <li>Employee</li>
+            <li>Consultant</li>
+            <li>Business partner</li>
+            <li>Business owner</li>
+          </ul>
+          <div class="prose soft" style="margin-top: 12px; max-width: 42rem;">
+            <p>His involvement has also grown beyond his own company, into partnerships and investments in other businesses across different industries. Depending on the opportunity, he has served as a partner, an advisor, an investor or the person who connects everyone. For him it is less about collecting titles and more about being around smart people and helping good ideas grow.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chapter III -->
+  <section class="band band--ivory-2" id="numbers" aria-labelledby="ch3-title">
+    <div class="wrap">
+      <div class="inner">
+        <div class="chapter-head">
+          <span class="numeral" aria-hidden="true">III</span>
+          <p class="label">Chapter Three</p>
+          <h2 id="ch3-title">The numbers behind the journey</h2>
+        </div>
+
+        <div class="split" style="margin-bottom: clamp(40px, 6vw, 72px);">
+          <div class="prose">
+            <p class="lede">As a kid, Alexander believed that anyone earning $100,000 a year had made it in life. The milestones below are real. They are also only part of the story.</p>
+          </div>
+        </div>
+
+        <div class="ledger" role="table" aria-label="Career milestones">
+          <div class="ledger-row reveal" role="row">
+            <p class="fig" role="cell">$100,000</p>
+            <p class="what" role="cell">His first $100,000 in sales, generated during his first year as an employee.</p>
+            <p class="label tag" role="cell">First year in sales</p>
+          </div>
+          <div class="ledger-row reveal" role="row">
+            <p class="fig" role="cell">Seven figures</p>
+            <p class="what" role="cell">Reached in his first year as a business owner.</p>
+            <p class="label tag" role="cell">First year as owner</p>
+          </div>
+          <div class="ledger-row reveal" role="row">
+            <p class="fig" role="cell">Millions</p>
+            <p class="what" role="cell">In business and sales he has contributed to across his career, including seven figure and multi seven figure results, through direct sales, accounts, consulting, partnerships and the teams he helped build.</p>
+            <p class="label tag" role="cell">Across a career</p>
+          </div>
+          <div class="ledger-row reveal" role="row">
+            <p class="fig" role="cell">About 10</p>
+            <p class="what" role="cell">Employees today, supported by subcontractors and specialists brought in for each project. Alexander oversees consulting, growth operations, client relationships and overall direction.</p>
+            <p class="label tag" role="cell">Today</p>
+          </div>
+          <div class="ledger-row reveal" role="row">
+            <p class="fig" role="cell">Honorable</p>
+            <p class="what" role="cell">Discharge from the United States Marine Corps.</p>
+            <p class="label tag" role="cell">Service</p>
+          </div>
+        </div>
+
+        <div class="ledger-note">
+          <p>A note on these figures. The career numbers describe business and sales activity Alexander personally contributed to, generated, managed or helped bring in, often alongside sales teams and partners. They are not his personal income, and they are not the revenue of his current company. They are his own account and have not been independently audited.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chapter IV -->
+  <section class="band band--dark-2" id="lessons" aria-labelledby="ch4-title">
+    <div class="wrap">
+      <div class="inner">
+        <div class="chapter-head">
+          <span class="numeral" aria-hidden="true">IV</span>
+          <p class="label">Chapter Four &nbsp;·&nbsp; 2024 and 2025</p>
+          <h2 id="ch4-title">The hardest lessons</h2>
+        </div>
+
+        <div class="lessons-grid">
+          <div class="prose">
+            <p class="lede" style="color: var(--on-dark);">When Alexander became an owner, he wanted to give people he cared about the kind of opportunity he had worked so hard to find. Some of the people he hired were friends and family.</p>
+            <p>As the business grew, several of them decided to take a different path. Some wanted a larger share of the revenue. Some believed they could move faster on their own. Some wanted to build businesses of their own. <strong>He understood the desire.</strong></p>
+            <p>What was harder to watch was how much stayed invisible from the outside. The costs that keep a quality business running rarely show up in a sales total:</p>
+            <ul class="ledger-of-costs" aria-label="Costs customers never see">
+              <li>Materials</li><li>Products</li><li>Employees</li><li>Office space</li><li>Technology</li><li>Overhead</li><li>Customer service</li>
+            </ul>
+            <p>When several people leave at once, the pressure is real. For a moment he had to seriously ask how he would keep everything moving while rebuilding the team around him. He kept going. He rebuilt where he needed to, stayed focused on customers and quality, and <strong>the business survived.</strong></p>
+            <p>He does not look back with bitterness, and he does not regret wanting to help people. That is still a large part of who he is. What changed is how he does it.</p>
+          </div>
+
+          <div class="rebuild reveal" aria-label="What he took from it">
+            <p class="label" style="margin-bottom: 18px;">What he took from it</p>
+            <div class="rebuild-item">
+              <h3>Revenue is not profit.</h3>
+              <p>Building something sustainable takes patience and discipline, and a clear view of what it costs to deliver quality.</p>
+            </div>
+            <div class="rebuild-item">
+              <h3><span class="was">If I trust them enough, they will value it</span>Trust has to be earned.</h3>
+              <p>He once believed that enough trust, opportunity and forgiveness would be valued the way he valued it. He was sometimes too forgiving and too trusting. Opportunity now comes with responsibility, and generosity comes with boundaries.</p>
+            </div>
+            <div class="rebuild-item">
+              <h3>Build what outlasts any one person.</h3>
+              <p>A company cannot depend entirely on any individual. It needs systems, standards, relationships and a culture strong enough to keep moving when people change direction.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="wide-quote reveal">
+          <blockquote class="quote">Some people are meant to stay for the entire journey, and others are meant to be part of a chapter.</blockquote>
+          <p class="label attribution">Alexander Marshall</p>
+        </div>
+        <div class="wide-quote reveal" style="margin-top: clamp(48px, 7vw, 88px);">
+          <p class="soft" style="max-width: 36rem;">The line he draws now is between two things that can look alike:</p>
+          <blockquote class="quote" style="font-size: var(--step-2); max-width: 34ch;">giving someone an opportunity and giving someone something they haven't earned yet.</blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chapter V -->
+  <section class="band band--ivory beyond" id="beyond" aria-labelledby="ch5-title">
+    <div class="wrap">
+      <div class="inner">
+        <p class="label" style="margin-bottom: 26px;">Chapter Five &nbsp;·&nbsp; Beyond the numbers</p>
+        <h2 id="ch5-title">The numbers were never the <em>whole story.</em></h2>
+
+        <div class="definition">
+          <div class="then-card reveal">
+            <p class="label">His definition of success, as a kid</p>
+            <p class="struck">$100,000 a year</p>
+            <p class="soft" style="max-width: 26rem;">He went on to generate his first $100,000 in sales in his first year as an employee. Then the partners, business owners and friends he met who had reached financial freedom taught him something the number never could.</p>
+          </div>
+          <div class="reveal">
+            <p class="label" style="margin-bottom: 14px;">His definition now</p>
+            <ul class="now-list">
+              <li><span>Health</span><span>What money cannot buy back</span></li>
+              <li><span>Family and friends</span><span>Time with the people you love</span></li>
+              <li><span>Experiences</span><span>Living while you build</span></li>
+              <li><span>The people you help</span><span>Opportunity, passed on</span></li>
+              <li><span>What you share</span><span>Knowledge, given freely</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="counselor">
+          <div class="prose">
+            <p class="lede">Before he was ever focused on sales, he used to tell people that if he became financially free, he wanted to be a guidance counselor.</p>
+            <p class="soft">He also loved an idea he called being an undercover millionaire: someone who could quietly walk into another person's life, understand what they were going through, and hand them the knowledge or opportunity that changes their direction. It is an aspiration about how to help people, not a statement about wealth.</p>
+            <p class="soft">In his view, financial success creates freedom, and what you do with that freedom is what matters. If he can help someone get further, avoid a mistake he made, or believe in themselves a little more, he counts that as a milestone worth more than any sales figure.</p>
+          </div>
+          <p class="phrase reveal">Undercover millionaire.<small>An idea he has carried since before the first sale</small></p>
+        </div>
+
+        <div class="advice">
+          <div class="advice-grid">
+            <div style="display: grid; gap: 24px;">
+              <p class="label">His first advice to anyone starting out</p>
+              <p class="big">Don't stress so much.</p>
+            </div>
+            <figure class="photo reveal">
+              <div class="frame"><img src="images/portrait-on-the-water.jpg" width="800" height="1000" loading="lazy" decoding="async" alt="Alexander Marshall laughing on a boat on a summer day, making a heart with his hands"></div>
+              <figcaption><span class="label">Enjoy the journey</span></figcaption>
+            </figure>
+          </div>
+          <div class="cols">
+            <p class="soft">It is easy to get so focused on the next number that you forget to enjoy the life you are building. Create value. Treat people well. Build real relationships. Learn everything you can. Work hard, but do not let work become your entire life.</p>
+            <p class="soft">Money can create opportunity and freedom, but it cannot give back time with family and friends or the moments missed while chasing it. Life moves faster than you expect. <strong style="color: var(--ink); font-weight: 600;">Enjoy the journey.</strong> Life is happening while you are building the business.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Approach -->
+  <section class="band band--ivory-2" id="approach" aria-labelledby="approach-title">
+    <div class="wrap">
+      <div class="inner">
+        <div class="approach-intro">
+          <div>
+            <p class="label" style="margin-bottom: 22px;">How he works</p>
+            <h2 id="approach-title" style="font-family: var(--display); font-size: var(--step-4); line-height: 1.02; max-width: 13ch;">A community, not a list of transactions.</h2>
+          </div>
+          <div class="prose soft" style="align-self: end;">
+            <p>Alexander's business provides strategic consulting, growth support, operational development and ongoing relationship management. It works with ambitious professionals, business owners, entrepreneurs and organizations that want more than the status quo: a stronger presence, real relationships, wider reach, and opportunities turned into growth.</p>
+            <p>He believes it has worked because of three things: relationships, quality of work, and making people feel valued.</p>
+          </div>
+        </div>
+
+        <ul class="principles">
+          <li class="reveal"><h3>People, never numbers</h3><p>Customers and employees should know their time and effort mean something.</p></li>
+          <li class="reveal"><h3>Value after the sale</h3><p>Understanding each client's goals, and continuing to create value long after the first transaction.</p></li>
+          <li class="reveal"><h3>Customers like family</h3><p>Trust and loyalty come from relationships that go beyond the deal.</p></li>
+          <li class="reveal"><h3>Recognize the team</h3><p>People give their best when they feel valued, respected and recognized for what they bring.</p></li>
+          <li class="reveal"><h3>Quality first</h3><p>One of the three reasons he gives for why the business has worked.</p></li>
+          <li class="reveal"><h3>Opportunity through relationships</h3><p>Connecting the right people and thinking strategically about where growth will come from.</p></li>
+          <li class="reveal"><h3>Built to last</h3><p>Sustainable operations, not revenue alone.</p></li>
+          <li class="reveal"><h3>Knowledge is meant to be shared</h3><p>Helping other people grow, and learning from them in return.</p></li>
+        </ul>
+
+        <div class="motto reveal">
+          <p class="label">The saying he disagrees with</p>
+          <p class="old">Good things come to those who wait.</p>
+          <p class="new">Better things come to those who go out and get them.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chapter VI -->
+  <section class="band band--dark" id="next" aria-labelledby="ch6-title">
+    <div class="wrap">
+      <div class="inner">
+        <div class="chapter-head">
+          <span class="numeral" aria-hidden="true">VI</span>
+          <p class="label">Chapter Six</p>
+          <h2 id="ch6-title">The next chapter</h2>
+        </div>
+
+        <div class="next-grid">
+          <figure class="book reveal" data-placeholder="book-title" aria-label="Alexander Marshall's book, title to be announced" style="margin: 0;">
+            <span class="a">Alexander Marshall</span>
+            <span class="t">A book in progress<span>Title to be announced</span></span>
+            <span class="a" style="color: var(--on-dark-soft);">Business · Relationships · Life</span>
+          </figure>
+          <div>
+            <div class="prose">
+              <p class="lede" style="color: var(--on-dark);">Alexander is writing a book that brings together what he has learned through sales, business, relationships and entrepreneurship: the successes, the failures, and the people along the way.</p>
+              <p class="soft">For him, the most valuable things you can give someone are rarely money or resources. They are knowledge, perspective, connections, and a chance to see what is possible.</p>
+            </div>
+            <ul class="next-list">
+              <li><h3>The book</h3><p>Turning years of lessons into something that can create value for other people.</p></li>
+              <li><h3>Mentorship as an exchange</h3><p>He has invested in speaking, coaching and mentorship programs, as a student and as a contributor, surrounding himself with people who share what they know.</p></li>
+              <li><h3>Partnerships that help good ideas grow</h3><p>Continuing to work alongside owners and entrepreneurs where he can bring sales, relationships and strategy.</p></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="band band--ivory contact" id="contact" aria-labelledby="contact-title">
+    <div class="wrap">
+      <div class="inner">
+        <p class="label" style="margin-bottom: 22px;">Start a conversation</p>
+        <h2 id="contact-title">You don't need it all figured out.</h2>
+
+        <div class="contact-grid">
+          <div class="prose">
+            <p class="lede">Whether you are a potential partner, customer, investor, future team member or a fellow entrepreneur, Alexander would like to hear from you. Come with whatever you have:</p>
+            <ul class="bring" aria-label="What to bring">
+              <li>An idea</li><li>An opportunity</li><li>A question</li><li>Something to exchange</li>
+            </ul>
+            <p class="soft">Then see where the relationship goes.</p>
+          </div>
+
+          <div>
+            <div class="channels">
+              <div class="channel" data-placeholder="email">
+                <span class="label">Email</span>
+                <span class="value pending" id="email-value">Address being confirmed</span>
+                <button class="btn btn--ink btn--small" type="button" id="copy-email" data-copy-target="email-value" hidden>Copy</button>
+              </div>
+              <div class="channel" data-placeholder="phone-or-booking">
+                <span class="label">Call</span>
+                <span class="value pending">Number or booking link being confirmed</span>
+                <span></span>
+              </div>
+              <div class="channel" data-placeholder="linkedin">
+                <span class="label">LinkedIn</span>
+                <span class="value pending">Profile link being confirmed</span>
+                <span></span>
+              </div>
+              <div class="channel">
+                <span class="label">Based in</span>
+                <span class="value">New York, NY</span>
+                <span></span>
+              </div>
+            </div>
+            <p class="copy-status" id="copy-status" role="status" aria-live="polite"></p>
+          </div>
+        </div>
+
+        <div class="corner">
+          <div class="corner-grid">
+            <figure class="photo reveal">
+              <div class="frame"><img src="images/portrait-times-square.jpg" width="800" height="1000" loading="lazy" decoding="async" alt="Alexander Marshall smiling in Times Square at night"></div>
+              <figcaption><span class="label">Times Square, New York</span></figcaption>
+            </figure>
+            <div style="display: grid; gap: 12px;">
+              <p class="label">What he hopes you take away</p>
+              <p>If you looked him up before meeting him, he hopes you leave thinking one thing: this is someone I would want in my corner.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="band band--dark site-foot">
+  <div class="wrap">
+    <div class="inner">
+      <div class="row">
+        <a class="wordmark" href="#top">Alexander Marshall</a>
+        <span class="label" style="color: var(--on-dark-soft);">New York, NY &nbsp;·&nbsp; © <span id="year">2026</span></span>
+        <a class="label" href="#top">Back to top &#8963;</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var y = document.getElementById('year');
+  if (y) y.textContent = String(new Date().getFullYear());
+
+  // Copy buttons only appear once a real value replaces a placeholder.
+  var status = document.getElementById('copy-status');
+  document.querySelectorAll('[data-copy-target]').forEach(function (btn) {
+    var target = document.getElementById(btn.getAttribute('data-copy-target'));
+    if (!target || target.classList.contains('pending')) return;
+    btn.hidden = false;
+    btn.addEventListener('click', function () {
+      var text = target.textContent.trim();
+      function selectFallback() {
+        var r = document.createRange(); r.selectNodeContents(target);
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        status.textContent = 'Selected. Press Ctrl+C or Cmd+C to copy.';
+      }
+      try {
+        navigator.clipboard.writeText(text).then(function () {
+          status.textContent = 'Copied ' + text;
+        }, selectFallback);
+      } catch (e) { selectFallback(); }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
