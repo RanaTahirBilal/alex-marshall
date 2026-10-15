@@ -454,29 +454,62 @@ a { color: inherit; }
 .advice .h3 { font-weight: 500; }
 
 /* WHAT'S NEXT */
-.next-grid { display: grid; gap: clamp(40px, 6vw, 88px); grid-template-columns: minmax(0, 1fr); align-items: center; }
-@media (min-width: 900px) { .next-grid { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); } }
-/* The book in progress: a CSS object, untitled, labelled as a concept */
-.book-stage { display: grid; justify-items: center; gap: 22px; perspective: 1400px; padding-block: 12px; }
-.book { --w: clamp(170px, 22vw, 250px); --d: clamp(26px, 3vw, 38px); position: relative; width: var(--w); aspect-ratio: 2 / 3; transform-style: preserve-3d; transform: rotateX(4deg) rotateY(-30deg); transition: transform 450ms var(--ease); }
+.book-band { background: var(--navy); color: var(--on-dark); position: relative; overflow: hidden; border-top: 1px solid var(--gold-edge); }
+.book-band::before { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 70% at 26% 48%, rgba(199, 164, 103, 0.16), rgba(199, 164, 103, 0) 70%), radial-gradient(80% 60% at 100% 100%, rgba(16, 25, 35, 0.55), rgba(16, 25, 35, 0) 70%); pointer-events: none; }
+.book-band .wrap { position: relative; }
+.next-grid { display: grid; gap: clamp(48px, 7vw, 104px); grid-template-columns: minmax(0, 1fr); align-items: center; }
+@media (min-width: 900px) { .next-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); } }
+
+/* The book in progress: a burgundy leather volume with gold foil, built in CSS and labelled as a concept */
+.book-stage { display: grid; justify-items: center; gap: 30px; perspective: 1600px; padding-block: 24px 8px; margin: 0; }
+.book { --w: clamp(210px, 24vw, 320px); --d: clamp(30px, 3.2vw, 44px); --foil: linear-gradient(115deg, #9C7A3E 0%, #E9D29A 28%, #C7A467 46%, #F3E2B4 58%, #A8843F 80%, #D8BC80 100%);
+  position: relative; width: var(--w); aspect-ratio: 2 / 3; transform-style: preserve-3d; transform: rotateX(6deg) rotateY(-28deg) rotateZ(1deg); transition: transform 700ms var(--ease); }
 .book > span { position: absolute; display: block; }
-.book .cover { inset: 0; background: linear-gradient(115deg, #2E4A5C 0%, var(--navy) 50%, #1B2E3A 100%); box-shadow: inset 0 0 0 1px rgba(199, 164, 103, 0.3), inset 14px 0 18px -14px rgba(0, 0, 0, 0.7); transform: translateZ(calc(var(--d) / 2)); display: grid; grid-template-rows: auto 1fr auto; padding: 12% 11%; color: var(--on-dark); }
-.book .cover::after { content: ""; position: absolute; inset: 7%; border: 1px solid rgba(199, 164, 103, 0.5); pointer-events: none; }
-.book .b-author { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--bronze); }
-.book .b-title { align-self: center; font-family: var(--display); font-style: italic; font-size: clamp(1.4rem, 1rem + 1.2vw, 2rem); line-height: 1.1; color: var(--on-dark); }
-.book .b-state { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--on-dark-soft); }
-.book .spine { top: 0; bottom: 0; left: 0; width: var(--d); background: linear-gradient(90deg, #142430, #2A4555 45%, #1A2C38); transform-origin: left center; transform: translateZ(calc(var(--d) / 2)) rotateY(-90deg); }
-.book .pages { top: 1.5%; bottom: 1.5%; right: 0; width: calc(var(--d) - 4px); background: repeating-linear-gradient(90deg, var(--ivory) 0 2px, #DCD5C7 2px 3px); transform-origin: right center; transform: translateZ(calc(var(--d) / 2 - 2px)) rotateY(90deg); }
-.book .back { inset: 0; background: #1A2C38; transform: translateZ(calc(var(--d) / -2)) rotateY(180deg); }
-.book-shadow { width: calc(var(--w, 220px) * 0.9); height: 18px; margin-top: -10px; border-radius: 50%; background: radial-gradient(closest-side, rgba(16, 25, 35, 0.3), rgba(16, 25, 35, 0)); }
-.book-stage figcaption { font-size: var(--t-meta); color: var(--ink-soft); text-align: center; max-width: 30ch; }
-@media (hover: hover) { .book-stage:hover .book { transform: rotateX(3deg) rotateY(-18deg) translateY(-6px); } }
-@media (prefers-reduced-motion: reduce) { .book { transition: none; } }
-.work-in-progress { font-family: var(--display); font-size: clamp(2.4rem, 1.6rem + 3vw, 4.4rem); line-height: 1.04; letter-spacing: -0.015em; max-width: 12ch; }
-.next-list { list-style: none; padding: 0; display: grid; }
-.next-list li { display: grid; gap: 6px; padding-block: 22px; border-top: 1px solid var(--rule-light); }
-.next-list li:last-child { border-bottom: 1px solid var(--rule-light); }
-.next-list p { color: var(--ink-soft); max-width: 46ch; }
+.book .cover { inset: 0; border-radius: 2px 6px 6px 2px; background:
+    radial-gradient(120% 80% at 30% 20%, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0) 60%),
+    repeating-linear-gradient(35deg, rgba(0, 0, 0, 0.05) 0 2px, rgba(255, 255, 255, 0.02) 2px 4px),
+    linear-gradient(160deg, #4A1F29 0%, var(--wine) 55%, #24090F 100%);
+  box-shadow: inset 10px 0 14px -10px rgba(0, 0, 0, 0.8), inset -1px 0 0 rgba(255, 255, 255, 0.06);
+  transform: translateZ(calc(var(--d) / 2)); display: grid; grid-template-rows: auto 1fr auto; justify-items: center; text-align: center; padding: 14% 12% 13%; overflow: hidden; }
+.book .cover::before { content: ""; position: absolute; inset: 6%; border: 1px solid transparent; border-image: var(--foil) 1; pointer-events: none; }
+.book .cover::after { content: ""; position: absolute; inset: calc(6% + 6px); border: 1px solid rgba(199, 164, 103, 0.35); pointer-events: none; }
+.book .b-author { position: relative; font-size: clamp(0.62rem, 0.55rem + 0.25vw, 0.78rem); font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; background: var(--foil); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.book .b-mark { position: relative; align-self: center; display: grid; justify-items: center; gap: 14px; }
+.book .b-mono { font-family: var(--display); font-style: italic; font-size: clamp(2.6rem, 1.8rem + 2.6vw, 4rem); line-height: 1; letter-spacing: -0.02em; background: var(--foil); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.45)); }
+.book .b-rule { width: 38px; height: 1px; background: var(--foil); }
+.book .b-title { font-family: var(--display); font-size: clamp(0.95rem, 0.8rem + 0.5vw, 1.25rem); letter-spacing: 0.04em; color: rgba(245, 240, 231, 0.82); }
+.book .b-state { position: relative; font-size: clamp(0.58rem, 0.52rem + 0.2vw, 0.7rem); font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(245, 240, 231, 0.6); }
+.book .sheen { inset: 0; transform: translateZ(calc(var(--d) / 2 + 0.5px)); background: linear-gradient(105deg, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 0.10) 45%, rgba(255, 255, 255, 0) 60%); background-size: 250% 100%; background-position: 100% 0; transition: background-position 1100ms var(--ease); pointer-events: none; border-radius: 2px 6px 6px 2px; }
+.book .spine { top: 0; bottom: 0; left: 0; width: var(--d); background:
+    linear-gradient(transparent 0 11%, rgba(199, 164, 103, 0.75) 11% calc(11% + 1px), transparent calc(11% + 1px) 14%, rgba(199, 164, 103, 0.75) 14% calc(14% + 1px), transparent calc(14% + 1px) 86%, rgba(199, 164, 103, 0.75) 86% calc(86% + 1px), transparent calc(86% + 1px) 89%, rgba(199, 164, 103, 0.75) 89% calc(89% + 1px), transparent calc(89% + 1px)),
+    linear-gradient(90deg, #1E070C, #4A1F29 50%, #26090F);
+  transform-origin: left center; transform: translateZ(calc(var(--d) / 2)) rotateY(-90deg); }
+.book .pages { top: 1.2%; bottom: 1.2%; right: 3px; width: calc(var(--d) - 6px); background: linear-gradient(90deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0) 30%), repeating-linear-gradient(90deg, #F3EAD6 0 1px, #D9C9A4 1px 2px); box-shadow: inset 0 0 0 1px rgba(199, 164, 103, 0.55); transform-origin: right center; transform: translateZ(calc(var(--d) / 2 - 3px)) rotateY(90deg); }
+.book .top { left: 3px; right: 3px; top: 0; height: calc(var(--d) - 6px); background: linear-gradient(var(--foil)); background: var(--foil); opacity: 0.85; transform-origin: top center; transform: translateZ(calc(var(--d) / 2 - 3px)) rotateX(-90deg); }
+.book .back { inset: 0; background: #24090F; border-radius: 6px 2px 2px 6px; transform: translateZ(calc(var(--d) / -2)) rotateY(180deg); }
+.book .ribbon { left: 66%; bottom: -9%; width: 9px; height: 16%; background: linear-gradient(90deg, #A8843F, #E3C78A 50%, #A8843F); clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 86%, 0 100%); transform: translateZ(calc(var(--d) / 2 - 6px)); box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); }
+.book-shadow { width: min(calc(var(--w, 260px) * 1.05), 86%); height: 26px; margin-top: -18px; border-radius: 50%; background: radial-gradient(closest-side, rgba(4, 8, 12, 0.6), rgba(4, 8, 12, 0)); transform: translateX(10%); }
+.book-stage figcaption { display: grid; gap: 6px; justify-items: center; text-align: center; }
+.book-stage figcaption .kicker { color: var(--bronze); }
+.book-stage figcaption span:last-child { font-size: var(--t-meta); color: var(--on-dark-soft); max-width: 32ch; text-wrap: balance; }
+@media (hover: hover) {
+  .book-stage:hover .book { transform: rotateX(4deg) rotateY(-16deg) rotateZ(0deg) translateY(-8px); }
+  .book-stage:hover .sheen { background-position: 0 0; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .js-motion .book-stage[data-reveal] .book { transform: rotateX(10deg) rotateY(-48deg) translateY(24px); }
+  .js-motion .book-stage[data-reveal].is-in .book { transform: rotateX(6deg) rotateY(-28deg) rotateZ(1deg); transition-duration: 1400ms; }
+}
+@media (prefers-reduced-motion: reduce) { .book, .book .sheen { transition: none; } }
+
+.work-in-progress { font-family: var(--display); font-size: clamp(2.6rem, 1.6rem + 3.6vw, 5rem); line-height: 1.02; letter-spacing: -0.02em; max-width: 11ch; }
+.work-in-progress em { font-style: italic; color: var(--bronze); }
+.next-list { list-style: none; padding: 0; display: grid; counter-reset: nx; }
+.next-list li { counter-increment: nx; display: grid; grid-template-columns: 3rem minmax(0, 1fr); gap: 6px 16px; padding-block: 24px; border-top: 1px solid var(--rule-dark); }
+.next-list li::before { content: counter(nx, upper-roman) "."; grid-row: 1 / span 2; font-family: var(--display); font-style: italic; font-size: 1.3rem; line-height: 1.5; color: var(--bronze); }
+.next-list li:last-child { border-bottom: 1px solid var(--rule-dark); }
+.next-list .h3 { color: var(--on-dark); }
+.next-list p { color: var(--on-dark-soft); max-width: 46ch; }
 
 /* CONTACT */
 .contact-grid { display: grid; gap: clamp(36px, 6vw, 80px); grid-template-columns: minmax(0, 1fr); align-items: center; }
@@ -493,6 +526,27 @@ a { color: inherit; }
 .site-foot .row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 14px; }
 .site-foot a { text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; }
 .site-foot .u-link { background-position: 0 calc(100% - 10px), 0 calc(100% - 10px); }
+
+/* Back to top: a gold arrow inside a ring that fills with reading progress */
+.to-top { --p: 0; position: fixed; z-index: 25; right: max(18px, calc(env(safe-area-inset-right, 0px) + 18px)); bottom: max(18px, calc(env(safe-area-inset-bottom, 0px) + 18px)); width: 56px; height: 56px; display: grid; place-items: center; border-radius: 50%; background: rgba(16, 25, 35, 0.86); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); color: var(--gold); box-shadow: 0 14px 30px -14px var(--shadow-deep), inset 0 0 0 1px rgba(199, 164, 103, 0.18); opacity: 0; visibility: hidden; transform: translateY(14px); transition: opacity 380ms var(--ease), transform 380ms var(--ease), visibility 0s linear 380ms, background-color 320ms var(--ease), color 320ms var(--ease); }
+.to-top.is-shown { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+.to-top svg { position: absolute; }
+.to-top-ring { inset: 0; width: 100%; height: 100%; transform: rotate(-90deg); }
+.to-top-ring circle { fill: none; stroke-width: 1.25; }
+.to-top-ring .track { stroke: rgba(199, 164, 103, 0.22); }
+.to-top-ring .progress { stroke: var(--gold); stroke-linecap: round; stroke-dasharray: 100; stroke-dashoffset: calc(100 - var(--p) * 100); }
+.to-top-arrow { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; transition: transform 380ms var(--ease); }
+.to-top-arrow path:first-child { stroke-dasharray: 15; stroke-dashoffset: 0; transition: stroke-dashoffset 380ms var(--ease); }
+.to-top:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+@media (hover: hover) {
+  .to-top:hover { background: var(--gold); color: var(--night); }
+  .to-top:hover .to-top-arrow { transform: translateY(-3px); }
+  .to-top:hover .to-top-ring .track { stroke: rgba(16, 25, 35, 0.25); }
+  .to-top:hover .to-top-ring .progress { stroke: var(--night); }
+}
+.to-top:active { transform: scale(0.96); }
+@media (max-width: 479px) { .to-top { width: 48px; height: 48px; } .to-top-arrow { width: 18px; height: 18px; } }
+@media (prefers-reduced-motion: reduce) { .to-top, .to-top-arrow { transition: opacity 1ms, visibility 0s; transform: none; } }
 
 /* Motion: one time reveals. Content stays visible when JavaScript, IntersectionObserver or motion is unavailable. */
 .js-motion [data-reveal] { opacity: 0; transform: translateY(16px); transition: opacity var(--dur-enter) var(--ease), transform var(--dur-enter) var(--ease); transition-delay: calc(var(--i, 0) * 90ms); }
@@ -811,25 +865,26 @@ a { color: inherit; }
     </div>
   </section>
 
-  <section class="band ivory-2 sage" id="next" aria-labelledby="ch6-title">
+  <section class="band dark book-band" id="next" aria-labelledby="ch6-title">
     <div class="wrap">
       <div class="inner">
         <div class="next-grid">
           <figure class="book-stage" data-reveal>
-            <div class="book" role="img" aria-label="Concept illustration of Alexander Marshall's book in progress. It has no title yet.">
-              <span class="back"></span><span class="pages"></span><span class="spine"></span>
-              <span class="cover"><span class="b-author">Alexander Marshall</span><span class="b-title">Untitled</span><span class="b-state">In progress</span></span>
+            <div class="book" role="img" aria-label="Concept illustration of Alexander Marshall's book in progress: a burgundy cover with gold lettering. It has no title yet.">
+              <span class="back"></span><span class="pages"></span><span class="top"></span><span class="spine"></span>
+              <span class="cover"><span class="b-author">Alexander Marshall</span><span class="b-mark"><span class="b-mono">AM</span><span class="b-rule"></span><span class="b-title">Title to come</span></span><span class="b-state">In progress</span></span>
+              <span class="sheen"></span><span class="ribbon"></span>
             </div>
             <span class="book-shadow" aria-hidden="true"></span>
-            <figcaption>Concept only. The book is unpublished and has no title yet.</figcaption>
+            <figcaption><span class="kicker">Concept cover</span><span>The book is unpublished and has no title yet.</span></figcaption>
           </figure>
           <div>
-            <div class="chapter" style="margin-bottom: 24px;">
+            <div class="chapter" style="margin-bottom: 26px;">
               <p class="kicker"><span>06</span>What's next</p>
-              <h2 class="work-in-progress" id="ch6-title">A book, in progress.</h2>
+              <h2 class="work-in-progress" id="ch6-title">A book, <em>in progress.</em></h2>
             </div>
             <p class="lede soft" style="max-width: 32rem;">He is writing about what business, relationships and entrepreneurship taught him, failures included.</p>
-            <ul class="next-list" style="margin-top: 28px;">
+            <ul class="next-list" style="margin-top: 32px;">
               <li><h3 class="h3">The undercover millionaire</h3><p>Before sales, he said that if he ever became financially free he would be a guidance counselor. The idea stuck: quietly stepping into someone's life with the knowledge or opportunity that changes their direction. An aspiration, not a statement about wealth.</p></li>
               <li><h3 class="h3">Mentorship and partnerships</h3><p>Learning from mentors, sharing with founders, and helping good ideas grow.</p></li>
             </ul>
@@ -868,11 +923,15 @@ a { color: inherit; }
       <div class="row">
         <a class="wordmark" href="#top">Alexander Marshall</a>
         <span class="meta">New York, NY &nbsp;·&nbsp; © <span id="year">2026</span></span>
-        <a class="u-link meta" href="#top">Back to top</a>
       </div>
     </div>
   </div>
 </footer>
+
+<a class="to-top" href="#top" aria-label="Back to top">
+  <svg class="to-top-ring" viewBox="0 0 56 56" aria-hidden="true" focusable="false"><circle class="track" cx="28" cy="28" r="26"/><circle class="progress" cx="28" cy="28" r="26" pathLength="100"/></svg>
+  <svg class="to-top-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 19.5V5"/><path d="M6.5 10.5 12 5l5.5 5.5"/></svg>
+</a>
 
 <script>
 (function () {
@@ -968,6 +1027,27 @@ a { color: inherit; }
         if (k === 'ArrowLeft' || k === 'ArrowUp') next = stops[Math.max(idx - 1, 0)];
         if (next && next !== st) { e.preventDefault(); next.querySelector('.mark').focus(); select(next); }
       });
+    });
+  })();
+
+  // Back to top: appears after the hero, ring shows reading progress.
+  (function () {
+    var btn = document.querySelector('.to-top'); if (!btn) return;
+    var ticking = false;
+    function update() {
+      ticking = false;
+      var h = document.documentElement, max = h.scrollHeight - innerHeight, y = scrollY || h.scrollTop;
+      btn.style.setProperty('--p', max > 0 ? Math.min(1, y / max).toFixed(3) : 0);
+      btn.classList.toggle('is-shown', y > innerHeight * 0.8);
+    }
+    addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    addEventListener('resize', update);
+    update();
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+      var target = document.querySelector('.wordmark'); if (target) target.focus({ preventScroll: true });
     });
   })();
 
