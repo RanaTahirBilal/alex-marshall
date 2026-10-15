@@ -289,26 +289,76 @@ a { color: inherit; }
 .decision .after .quote { color: var(--on-dark); max-width: 28ch; }
 @media (min-width: 900px) { .decision .after { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 56px; align-items: start; } }
 
-/* CAREER: four stages on a fine line */
+/* CAREER: a flowing champagne line drawn through four milestone markers.
+   Markers are HTML buttons placed by CSS; script draws the SVG path through their real centres, so the line and the columns can never drift apart. */
+#career { --champagne: #b08a52; --champagne-soft: rgba(176, 138, 82, 0.32); overflow: hidden; }
 #career .wrap { padding-bottom: calc(var(--band-y) + var(--overlap)); }
-.career-head { display: grid; gap: 22px; grid-template-columns: minmax(0, 1fr); margin-bottom: clamp(44px, 6vw, 76px); }
+#career .inner { position: relative; }
+.chapter-ghost { position: absolute; top: -0.12em; right: clamp(-8px, -1vw, 0px); font-family: var(--display); font-size: clamp(9rem, 4rem + 22vw, 24rem); line-height: 0.8; letter-spacing: -0.05em; color: rgba(28, 27, 25, 0.045); pointer-events: none; user-select: none; z-index: 0; }
+.career-head { position: relative; z-index: 1; display: grid; gap: 22px; grid-template-columns: minmax(0, 1fr); margin-bottom: clamp(48px, 7vw, 96px); }
 .career-head .chapter { margin-bottom: 0; }
-@media (min-width: 900px) { .career-head { grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); align-items: end; } }
-.stages { list-style: none; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; position: relative; }
-.stages > li { position: relative; display: grid; gap: 8px; padding: 0 0 36px 30px; }
-.stages > li::before { content: ""; position: absolute; left: 5px; top: 12px; bottom: 0; width: 1px; background: var(--rule-light); }
-.stages > li:last-child::before { display: none; }
-.stages > li::after { content: ""; position: absolute; left: 0; top: 6px; width: 11px; height: 11px; border-radius: 50%; border: 1px solid var(--ink); background: var(--ivory-2); }
-.stages > li.now::after { background: var(--ink); }
-.stages .h3 { font-size: clamp(1.45rem, 1.25rem + 0.6vw, 1.95rem); }
-.stages p { color: var(--ink-soft); max-width: 34ch; font-size: 1.02rem; }
+.career-head .h2 em { font-style: italic; color: var(--bronze-ink); }
+@media (min-width: 900px) { .career-head { grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); align-items: end; } .career-head .lede { padding-bottom: 0.45em; } }
+
+.path { position: relative; z-index: 1; --row: 132px; }
+.path-line { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.path-line path { fill: none; stroke: var(--champagne); stroke-width: 1.25; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.path-line .tail { stroke: var(--champagne-soft); stroke-dasharray: 2 5; }
+.stops { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: minmax(0, 1fr); counter-reset: stop; }
+.stop { position: relative; display: grid; grid-template-columns: 44px minmax(0, 1fr); column-gap: 18px; padding-bottom: 40px; min-width: 0; }
+.stop:last-child { padding-bottom: 0; }
+.mark { grid-column: 1; grid-row: 1; justify-self: center; align-self: start; position: relative; width: 44px; height: 44px; padding: 0; border: 0; background: none; cursor: pointer; border-radius: 50%; -webkit-tap-highlight-color: transparent; }
+.mark .ring { position: absolute; inset: 12px; border-radius: 50%; background: var(--ivory-2); border: 1px solid var(--champagne); box-shadow: 0 0 0 4px var(--ivory-2), 0 2px 6px -2px rgba(28, 27, 25, 0.25); transition: background-color 280ms var(--ease), border-color 280ms var(--ease), box-shadow 280ms var(--ease), transform 280ms var(--ease); }
+.mark .ring::after { content: ""; position: absolute; inset: 4px; border-radius: 50%; background: var(--champagne); transform: scale(0); transition: transform 280ms var(--ease); }
+.mark::before { content: ""; position: absolute; inset: 4px; border-radius: 50%; border: 1px solid var(--champagne-soft); opacity: 0; transform: scale(0.7); transition: opacity 320ms var(--ease), transform 320ms var(--ease); }
+.mark:focus-visible { outline: 2px solid var(--bronze-ink); outline-offset: 2px; }
+.stop .num { grid-column: 2; grid-row: 1; align-self: center; font-family: var(--display); font-size: 1.15rem; line-height: 1; color: var(--ink-soft); font-variant-numeric: lining-nums tabular-nums; transition: color 280ms var(--ease); }
+.stop .tag { grid-column: 2; margin-top: 4px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); transition: color 280ms var(--ease); }
+.stop .h3 { grid-column: 2; margin-top: 8px; font-size: clamp(1.45rem, 1.25rem + 0.6vw, 1.95rem); }
+.stop .body { grid-column: 2; margin-top: 8px; color: var(--ink-soft); font-size: 1.02rem; max-width: 34ch; }
+.stop .pane { position: absolute; top: -10px; bottom: 26px; left: 50px; right: -8px; border: 1px solid transparent; background: transparent; transition: background-color 300ms var(--ease), border-color 300ms var(--ease); pointer-events: none; z-index: -1; }
+.stop:last-child .pane { bottom: -14px; }
+.stop .stem { display: none; }
+
+/* Active and preview states: selected by click or tap, previewed by hover or focus */
+.stop.is-active .ring, .stop.is-preview .ring { border-color: var(--champagne); }
+.stop.is-active .ring::after, .stop.is-preview .ring::after { transform: scale(1); }
+.stop.is-active .mark::before { opacity: 1; transform: scale(1); }
+.stop.is-active .num, .stop.is-preview .num, .stop.is-active .tag, .stop.is-preview .tag { color: var(--bronze-ink); }
+.stop.is-active .pane { background: rgba(255, 255, 255, 0.32); border-color: rgba(176, 138, 82, 0.28); }
+.stop.is-preview:not(.is-active) .pane { background: rgba(255, 255, 255, 0.18); }
+
 @media (min-width: 900px) {
-  .stages { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; }
-  .stages > li { padding: 32px 0 0; }
-  .stages > li::before { left: 0; right: -32px; top: 5px; bottom: auto; width: auto; height: 1px; }
-  .stages > li:last-child::before { display: block; right: 0; }
-  .stages > li::after { top: 0; }
+  .stops { grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 0; }
+  .stop { grid-template-columns: minmax(0, 1fr); grid-template-rows: var(--row) auto auto auto auto; padding: 0 clamp(16px, 2vw, 32px) 0 clamp(16px, 2vw, 32px); }
+  .stop { align-content: start; }
+  /* Shared rows across all four columns: numbers, labels, titles and text line up even when a title wraps */
+  @supports (grid-template-rows: subgrid) {
+    .stops { grid-template-rows: var(--row) auto auto auto auto; }
+    .stop { grid-row: span 5; grid-template-rows: subgrid; }
+  }
+  .stop:first-child { padding-left: 0; }
+  .stop + .stop { border-left: 1px solid var(--rule-light); }
+  .stop + .stop::before { content: ""; position: absolute; left: -1px; top: 0; height: var(--row); width: 1px; background: var(--ivory-2); }
+  .mark { grid-row: 1; grid-column: 1; justify-self: start; margin-left: -16px; margin-top: calc(var(--y) - 22px); }
+  .stop .stem { display: block; grid-row: 1; grid-column: 1; justify-self: start; align-self: end; width: 1px; height: calc(var(--row) - var(--y) - 22px); margin-left: 5.5px; background: linear-gradient(var(--champagne-soft), rgba(176, 138, 82, 0.1)); }
+  .stop .num, .stop .tag, .stop .h3, .stop .body { grid-column: 1; }
+  .stop .num { grid-row: 2; padding-top: 22px; font-size: clamp(2.2rem, 1.6rem + 1.4vw, 3rem); color: rgba(28, 27, 25, 0.24); }
+  .stop.is-active .num, .stop.is-preview .num { color: var(--bronze-ink); }
+  .stop .tag { grid-row: 3; }
+  .stop .h3 { grid-row: 4; }
+  .stop .body { grid-row: 5; }
+  .stop .pane, .stop:last-child .pane { top: calc(var(--row) + 8px); bottom: -18px; left: clamp(4px, 0.8vw, 14px); right: clamp(4px, 0.8vw, 14px); }
+  .stop:first-child .pane { left: -14px; }
+  .stop .num { align-self: auto; }
 }
+@media (hover: hover) { .mark:hover .ring { box-shadow: 0 0 0 4px var(--ivory-2), 0 0 0 9px rgba(176, 138, 82, 0.14); } }
+
+/* Line draw and marker sequence, once. Content is never hidden. */
+.js-motion .path-line .draw { stroke-dasharray: var(--len, 4000); stroke-dashoffset: var(--len, 4000); transition: stroke-dashoffset 1600ms var(--ease); }
+.js-motion .path.is-in .path-line .draw { stroke-dashoffset: 0; }
+.js-motion .path .ring { transform: scale(0.4); opacity: 0; transition: transform 500ms var(--ease), opacity 500ms var(--ease), background-color 280ms var(--ease), border-color 280ms var(--ease), box-shadow 280ms var(--ease); transition-delay: calc(200ms + var(--i, 0) * 260ms), calc(200ms + var(--i, 0) * 260ms), 0s, 0s, 0s; }
+.js-motion .path.is-in .ring { transform: none; opacity: 1; }
 
 /* MILESTONES: a figure ledger */
 #milestones .wrap { padding-top: 0; }
@@ -581,20 +631,56 @@ a { color: inherit; }
   <section class="band ivory-2" id="career" aria-labelledby="ch2-title">
     <div class="wrap">
       <div class="inner">
+        <span class="chapter-ghost" aria-hidden="true">02</span>
         <div class="career-head">
           <div class="chapter">
             <p class="kicker"><span>02</span>Career</p>
-            <h2 class="h2" id="ch2-title">He learned the business by doing it.</h2>
+            <h2 class="h2" id="ch2-title">He learned the business <em>by doing it.</em></h2>
           </div>
-          <p class="lede soft" style="max-width: 32rem;">Before he led people, he did their jobs. That is why he understands what quality takes to deliver.</p>
+          <p class="lede soft" style="max-width: 30rem;">Before he led people, he did their jobs. That is why he understands what quality takes to deliver.</p>
         </div>
 
-        <ol class="stages">
-          <li data-reveal style="--i:0"><span class="meta">Before sales</span><h3 class="h3">Marine Corps, then UPS</h3><p>Honorable Discharge, then a part time manager at UPS.</p></li>
-          <li data-reveal style="--i:1"><span class="meta">Learning by doing</span><h3 class="h3">Every seat</h3><p>Sales, account management, SEO, websites, business development and day to day operations.</p></li>
-          <li data-reveal style="--i:2"><span class="meta">Ownership</span><h3 class="h3">Owner and partner</h3><p>From employee to business owner, then partnerships and investments in other companies.</p></li>
-          <li class="now" data-reveal style="--i:3"><span class="meta">Today</span><h3 class="h3">Growth through people</h3><p>Consulting, growth operations and client relationships, with a team of about ten.</p></li>
-        </ol>
+        <div class="path" data-reveal="path">
+          <svg class="path-line" aria-hidden="true" focusable="false"><path class="draw" d=""></path><path class="tail" d=""></path></svg>
+          <ol class="stops" aria-label="Career milestones">
+          <li class="stop" style="--y:58px; --i:0">
+            <button class="mark" type="button" aria-pressed="false" aria-label="Highlight milestone 01, Before sales: Marine Corps, then UPS"><span class="ring"></span></button>
+            <span class="stem" aria-hidden="true"></span>
+            <span class="pane" aria-hidden="true"></span>
+            <span class="num" aria-hidden="true">01</span>
+            <span class="tag">Before sales</span>
+            <h3 class="h3">Marine Corps, then UPS</h3>
+            <p class="body">Honorable Discharge, then a part time manager at UPS.</p>
+          </li>
+          <li class="stop is-active" style="--y:28px; --i:1">
+            <button class="mark" type="button" aria-pressed="true" aria-label="Highlight milestone 02, Learning by doing: Every seat"><span class="ring"></span></button>
+            <span class="stem" aria-hidden="true"></span>
+            <span class="pane" aria-hidden="true"></span>
+            <span class="num" aria-hidden="true">02</span>
+            <span class="tag">Learning by doing</span>
+            <h3 class="h3">Every seat</h3>
+            <p class="body">Sales, account management, SEO, websites, business development and day to day operations.</p>
+          </li>
+          <li class="stop" style="--y:66px; --i:2">
+            <button class="mark" type="button" aria-pressed="false" aria-label="Highlight milestone 03, Ownership: Owner and partner"><span class="ring"></span></button>
+            <span class="stem" aria-hidden="true"></span>
+            <span class="pane" aria-hidden="true"></span>
+            <span class="num" aria-hidden="true">03</span>
+            <span class="tag">Ownership</span>
+            <h3 class="h3">Owner and partner</h3>
+            <p class="body">From employee to business owner, then partnerships and investments in other companies.</p>
+          </li>
+          <li class="stop" style="--y:36px; --i:3">
+            <button class="mark" type="button" aria-pressed="false" aria-label="Highlight milestone 04, Today: Growth through people"><span class="ring"></span></button>
+            <span class="stem" aria-hidden="true"></span>
+            <span class="pane" aria-hidden="true"></span>
+            <span class="num" aria-hidden="true">04</span>
+            <span class="tag">Today</span>
+            <h3 class="h3">Growth through people</h3>
+            <p class="body">Consulting, growth operations and client relationships, with a team of about ten.</p>
+          </li>
+          </ol>
+        </div>
       </div>
     </div>
   </section>
@@ -796,6 +882,56 @@ a { color: inherit; }
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
     document.querySelectorAll('[data-reveal]').forEach(function (el) { ro.observe(el); });
   }
+  // Career line: drawn through the real centre of each marker, redrawn on resize.
+  (function () {
+    var wrap = document.querySelector('.path'); if (!wrap) return;
+    var svg = wrap.querySelector('.path-line'), draw = svg.querySelector('.draw'), tail = svg.querySelector('.tail');
+    var stops = [].slice.call(wrap.querySelectorAll('.stop'));
+    function build() {
+      var box = wrap.getBoundingClientRect();
+      var pts = stops.map(function (st) { var r = st.querySelector('.ring').getBoundingClientRect(); return [r.left + r.width / 2 - box.left, r.top + r.height / 2 - box.top]; });
+      var horizontal = pts.length > 1 && Math.abs(pts[1][0] - pts[0][0]) > Math.abs(pts[1][1] - pts[0][1]);
+      svg.setAttribute('viewBox', '0 0 ' + box.width + ' ' + box.height);
+      var d = 'M' + pts[0][0].toFixed(1) + ' ' + pts[0][1].toFixed(1);
+      if (horizontal) {
+        var lead = Math.min(pts[0][0], 40);
+        d = 'M' + (pts[0][0] - lead).toFixed(1) + ' ' + (pts[0][1] + 10).toFixed(1) + ' Q ' + (pts[0][0] - lead / 2).toFixed(1) + ' ' + pts[0][1].toFixed(1) + ' ' + pts[0][0].toFixed(1) + ' ' + pts[0][1].toFixed(1);
+        for (var i = 1; i < pts.length; i++) {
+          var a = pts[i - 1], b = pts[i], k = (b[0] - a[0]) * 0.5;
+          d += ' C ' + (a[0] + k).toFixed(1) + ' ' + a[1].toFixed(1) + ' ' + (b[0] - k).toFixed(1) + ' ' + b[1].toFixed(1) + ' ' + b[0].toFixed(1) + ' ' + b[1].toFixed(1);
+        }
+        var last = pts[pts.length - 1], end = box.width, k2 = (end - last[0]) * 0.5;
+        tail.setAttribute('d', 'M' + last[0].toFixed(1) + ' ' + last[1].toFixed(1) + ' C ' + (last[0] + k2).toFixed(1) + ' ' + last[1].toFixed(1) + ' ' + (end - k2).toFixed(1) + ' ' + (last[1] - 18).toFixed(1) + ' ' + end.toFixed(1) + ' ' + (last[1] - 18).toFixed(1));
+      } else {
+        for (var j = 1; j < pts.length; j++) d += ' L ' + pts[j][0].toFixed(1) + ' ' + pts[j][1].toFixed(1);
+        tail.setAttribute('d', '');
+      }
+      draw.setAttribute('d', d);
+      try { wrap.style.setProperty('--len', Math.ceil(draw.getTotalLength()) + 1); } catch (e) {}
+    }
+    build();
+    if ('ResizeObserver' in window) new ResizeObserver(build).observe(wrap); else window.addEventListener('resize', build);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(build);
+
+    function select(st) {
+      stops.forEach(function (o) { var on = o === st; o.classList.toggle('is-active', on); o.querySelector('.mark').setAttribute('aria-pressed', on ? 'true' : 'false'); });
+    }
+    stops.forEach(function (st) {
+      var m = st.querySelector('.mark');
+      m.addEventListener('click', function () { select(st); });
+      st.addEventListener('mouseenter', function () { st.classList.add('is-preview'); });
+      st.addEventListener('mouseleave', function () { st.classList.remove('is-preview'); });
+      m.addEventListener('focus', function () { st.classList.add('is-preview'); });
+      m.addEventListener('blur', function () { st.classList.remove('is-preview'); });
+      m.addEventListener('keydown', function (e) {
+        var k = e.key, idx = stops.indexOf(st), next = null;
+        if (k === 'ArrowRight' || k === 'ArrowDown') next = stops[Math.min(idx + 1, stops.length - 1)];
+        if (k === 'ArrowLeft' || k === 'ArrowUp') next = stops[Math.max(idx - 1, 0)];
+        if (next && next !== st) { e.preventDefault(); next.querySelector('.mark').focus(); select(next); }
+      });
+    });
+  })();
+
   window.__motionReady = true;
 
   var links = document.querySelectorAll('.rail a');
