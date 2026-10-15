@@ -19,7 +19,7 @@
 <meta name="twitter:description" content="At nineteen, one conversation took him from UPS into sales. This is the story of what he built from there.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="image" href="images/hero-portrait.jpg">
+<link rel="preload" as="image" href="images/hero-portrait.jpg" imagesrcset="images/hero-portrait-600.jpg 600w, images/hero-portrait.jpg 1000w" imagesizes="(min-width: 900px) 42vw, 100vw">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;600&display=swap">
 <script type="application/ld+json">
 {
@@ -30,6 +30,9 @@
   "address": { "@type": "PostalAddress", "addressLocality": "New York", "addressRegion": "NY", "addressCountry": "US" },
   "knowsAbout": ["Consulting", "Growth operations", "Relationship management", "Sales", "Business development"]
 }
+</script>
+<script>
+(function(){var d=document.documentElement;if(window.matchMedia&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver' in window){d.classList.add('js-motion');setTimeout(function(){if(!window.__motionReady){var n=document.querySelectorAll('[data-reveal]');for(var i=0;i<n.length;i++)n[i].classList.add('is-in');}},3000);}})();
 </script>
 <style>
 /* Layout concept: charcoal and ivory carry the page; bronze appears only at the turning points (the headline turn, the $500, the board, seven figures, the primary action). Four original photographs, one per act: opening, lessons, values, invitation. */
@@ -59,8 +62,14 @@
   --t-quote: clamp(1.56rem, 1.2rem + 1.2vw, 2.4rem);      /* 25 to 38 */
   --t-meta: 0.8125rem;                                     /* 13 */
 
-  --band-y: clamp(84px, 10vw, 152px);
-  --measure: 62ch;
+  --band-y: clamp(72px, 10vw, 152px);
+  --container: clamp(1200px, 62.5vw, 1480px);
+  --overlap: clamp(48px, 8vw, 128px);
+  --lift: clamp(120px, 12vw, 200px);
+  --ease: cubic-bezier(.22, .61, .36, 1);
+  --dur-hover: 320ms;
+  --dur-enter: 650ms;
+  --measure: 52ch;
   color-scheme: light;
 }
 
@@ -102,7 +111,7 @@ a { color: inherit; }
   padding-right: max(16px, env(safe-area-inset-right, 0px));
   padding-block: var(--band-y);
 }
-.inner { max-width: 1200px; margin-inline: auto; padding-inline: clamp(0px, 3vw, 40px); }
+.inner { max-width: var(--container); margin-inline: auto; padding-inline: clamp(0px, 3vw, 40px); }
 
 /* Type roles: labels are neutral; bronze is reserved */
 .meta { font-size: var(--t-meta); font-weight: 500; letter-spacing: 0.02em; line-height: 1.5; color: var(--ink-soft); }
@@ -126,12 +135,15 @@ a { color: inherit; }
 /* Header */
 .site-head { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(28, 27, 25, 0.96); color: var(--on-dark); border-bottom: 1px solid var(--rule-dark); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
 .site-head .bar { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
-.site-head .row { max-width: 1200px; margin-inline: auto; padding-inline: clamp(0px, 3vw, 40px); display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 62px; }
-.wordmark { font-family: var(--display); font-size: 1.3rem; font-weight: 500; text-decoration: none; white-space: nowrap; letter-spacing: -0.01em; }
+.site-head .row { max-width: var(--container); margin-inline: auto; padding-inline: clamp(0px, 3vw, 40px); display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 62px; transition: min-height var(--dur-hover) var(--ease); }
+.site-head { transition: box-shadow var(--dur-hover) var(--ease), background-color var(--dur-hover) var(--ease); }
+.site-head.is-scrolled { box-shadow: 0 14px 30px -24px rgba(0, 0, 0, 0.9); background: rgba(18, 17, 16, 0.97); }
+.site-head.is-scrolled .row { min-height: 54px; }
+.wordmark { font-family: var(--display); font-size: 1.3rem; font-weight: 500; text-decoration: none; white-space: nowrap; letter-spacing: -0.01em; display: inline-flex; align-items: center; min-height: 44px; }
 .nav { display: flex; align-items: center; gap: 26px; }
 .nav-links { display: none; list-style: none; padding: 0; gap: 28px; }
-.nav-links a { font-size: 0.88rem; font-weight: 500; text-decoration: none; color: var(--on-dark-soft); padding-block: 8px; border-bottom: 1px solid transparent; transition: color .2s ease, border-color .2s ease; }
-.nav-links a:hover { color: var(--on-dark); border-bottom-color: var(--rule-dark); }
+.nav-links a { font-size: 0.88rem; font-weight: 500; color: var(--on-dark-soft); padding-block: 10px; --line-rest: transparent; }
+.nav-links a:focus-visible { color: var(--on-dark); }
 @media (min-width: 980px) { .nav-links { display: flex; } .menu { display: none; } }
 @media (max-width: 479px) { .nav > .btn { display: none; } }
 .menu { position: relative; }
@@ -139,16 +151,30 @@ a { color: inherit; }
 .menu summary::-webkit-details-marker { display: none; }
 .menu[open] summary .open-txt, .menu:not([open]) summary .close-txt { display: none; }
 .menu ul { position: absolute; right: 0; top: calc(100% + 8px); min-width: 230px; list-style: none; padding: 8px 0; background: var(--charcoal-3); border: 1px solid var(--rule-dark); }
-.menu li a { display: block; padding: 12px 18px; text-decoration: none; }
-.menu li a:hover { background: var(--charcoal-2); }
+.menu li a { display: block; padding: 13px 20px; text-decoration: none; transition: background-color var(--dur-hover) var(--ease), color var(--dur-hover) var(--ease); color: var(--on-dark-soft); }
+.menu li a:focus-visible, .menu li a:active { background: var(--charcoal-2); color: var(--on-dark); }
+.menu summary { min-height: 44px; display: flex; align-items: center; }
 
 /* Actions: one primary style, one text link */
-.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 13px 24px; font-family: var(--sans); font-weight: 600; font-size: 0.95rem; text-decoration: none; background: var(--bronze); color: var(--charcoal); border: 0; transition: background-color .2s ease; }
-.btn:hover { background: var(--on-dark); }
+.btn { position: relative; isolation: isolate; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 13px 24px; font-family: var(--sans); font-weight: 600; font-size: 0.95rem; text-decoration: none; background: var(--bronze); color: var(--charcoal); border: 0; }
+.btn::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--on-dark); transform: scaleX(0); transform-origin: 0 50%; transition: transform 380ms var(--ease); }
+.btn:focus-visible::before { transform: scaleX(1); }
+.btn:active { background: #d2b07c; }
 .btn-small { min-height: 40px; padding: 8px 16px; font-size: 0.86rem; }
-.text-link { font-weight: 500; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 6px; text-decoration-color: var(--rule-dark); transition: text-decoration-color .2s ease; }
-.text-link:hover { text-decoration-color: currentColor; }
-.ivory .text-link, .ivory-2 .text-link { text-decoration-color: var(--rule-light); }
+/* Underline system shared by text links and navigation: a resting rule, and a full rule that draws in from the left */
+.text-link, .nav-links a, .u-link { --line-rest: var(--rule-dark); font-weight: 500; text-decoration: none; padding-bottom: 4px; background-image: linear-gradient(currentColor, currentColor), linear-gradient(var(--line-rest), var(--line-rest)); background-size: 0% 1px, 100% 1px; background-position: 0 100%, 0 100%; background-repeat: no-repeat; transition: background-size var(--dur-hover) var(--ease), color var(--dur-hover) var(--ease); }
+.ivory .text-link, .ivory-2 .text-link { --line-rest: var(--rule-light); }
+.nav-links a { --line-rest: transparent; }
+.text-link:focus-visible, .nav-links a:focus-visible, .u-link:focus-visible { background-size: 100% 1px, 100% 1px; }
+.actions .text-link { padding-block: 12px 6px; }
+@media (hover: hover) {
+  .text-link:hover, .nav-links a:hover, .u-link:hover { background-size: 100% 1px, 100% 1px; }
+  .nav-links a:hover { color: var(--on-dark); }
+  .btn:hover::before { transform: scaleX(1); }
+  .menu li a:hover { background: var(--charcoal-2); color: var(--on-dark); }
+  .rail a:hover { color: var(--on-dark); }
+  .rail a:hover b { transform: translateX(4px); }
+}
 
 /* HERO */
 .hero .wrap { padding-block: clamp(32px, 5vw, 80px) clamp(56px, 7vw, 104px); }
@@ -158,6 +184,8 @@ a { color: inherit; }
 .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; }
 @media (max-width: 599px) { .hero-photo .frame { aspect-ratio: 1 / 1; } }
 @media (min-width: 600px) and (max-width: 899px) { .hero-photo .frame { aspect-ratio: 3 / 2; } .hero-photo img { object-position: 50% 15%; } }
+/* Phones and small tablets held sideways: put copy beside the portrait so the headline is on the first screen */
+
 .hero-copy { display: grid; gap: 26px; align-content: center; }
 .hero h1 { font-family: var(--display); font-size: var(--t-hero); line-height: 1.06; letter-spacing: -0.02em; }
 .hero h1 .turn { display: block; color: var(--bronze); }
@@ -174,13 +202,27 @@ a { color: inherit; }
 .facts dt { margin-bottom: 4px; }
 .facts dd { margin: 0; font-size: 0.98rem; line-height: 1.45; }
 @media (min-width: 980px) { .facts { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; } }
+/* Phones and small tablets held sideways: copy beside the portrait so the headline is on the first screen */
+@media (orientation: landscape) and (max-height: 560px) and (min-width: 560px) {
+  .hero .wrap { padding-block: 24px 56px; }
+  .hero .hero-grid { grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr); align-items: start; gap: 28px; }
+  .hero .hero-photo { order: 0; }
+  .hero .hero-photo .frame { aspect-ratio: 4 / 5; }
+  .hero .hero-copy { gap: 16px; }
+  .hero .hero-copy h1 { font-size: clamp(2rem, 0.8rem + 3.4vw, 3rem); }
+  .hero .hero-copy .intro { font-size: 1.02rem; }
+}
+/* Tablets and mid widths: secondary portraits sit at a readable size instead of spanning the column */
+@media (min-width: 600px) and (max-width: 979px) {
+  #lessons .photo, #values .photo, .contact .photo { width: min(100%, 460px); }
+}
 @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 @keyframes unveil { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
 @media (prefers-reduced-motion: no-preference) {
-  .hero h1, .hero .intro, .hero .actions { animation: rise .7s cubic-bezier(.2,.7,.2,1) both; }
-  .hero .intro { animation-delay: .12s; }
-  .hero .actions { animation-delay: .22s; }
-  .hero-photo .frame { animation: unveil .9s cubic-bezier(.6,.05,.2,1) both; }
+  .hero h1, .hero .intro, .hero .actions { animation: rise 500ms var(--ease) both; }
+  .hero .intro { animation-delay: 60ms; }
+  .hero .actions { animation-delay: 120ms; }
+  .hero-photo .frame { animation: unveil 800ms var(--ease) both; }
 }
 
 /* THE BEGINNING: six moments on a numbered spine */
@@ -190,15 +232,18 @@ a { color: inherit; }
   .origin { grid-template-columns: 190px minmax(0, 1fr); gap: 56px; }
   .rail { display: block; }
   .rail ol { position: sticky; top: 112px; list-style: none; padding: 0; display: grid; gap: 2px; border-left: 1px solid var(--rule-dark); }
-  .rail a { display: grid; grid-template-columns: 2.2em 1fr; padding: 8px 0 8px 16px; margin-left: -1px; border-left: 1px solid transparent; text-decoration: none; font-size: 0.9rem; color: var(--on-dark-soft); transition: color .2s ease, border-color .2s ease; }
+  .rail ol::before { content: ""; position: absolute; left: -1px; top: 0; width: 1px; height: var(--progress, 0%); background: var(--bronze); transition: height 400ms var(--ease); }
+  .rail b { font-weight: inherit; display: inline-block; transition: transform var(--dur-hover) var(--ease); }
+  .rail a { display: grid; grid-template-columns: 2.2em 1fr; padding: 8px 0 8px 16px; margin-left: -1px; border-left: 1px solid transparent; text-decoration: none; font-size: 0.9rem; color: var(--on-dark-soft); transition: color var(--dur-hover) var(--ease), border-color var(--dur-hover) var(--ease); }
   .rail a span { font-variant-numeric: tabular-nums; }
-  .rail a:hover, .rail a[aria-current="step"] { color: var(--on-dark); border-left-color: var(--on-dark); }
+  .rail a:focus-visible, .rail a[aria-current="step"] { color: var(--on-dark); }
+  .rail a[aria-current="step"] b { transform: translateX(4px); }
 }
 .scenes { display: grid; gap: clamp(84px, 11vw, 150px); min-width: 0; }
 .scene { display: grid; gap: 20px; min-width: 0; }
 .scene-no { font-size: var(--t-meta); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--on-dark-soft); display: flex; gap: 12px; }
 .scene-no span:first-child { font-variant-numeric: tabular-nums; color: var(--on-dark); }
-.scene p { max-width: 56ch; color: var(--on-dark-soft); }
+.scene p { max-width: 50ch; color: var(--on-dark-soft); }
 .scene p strong { color: var(--on-dark); font-weight: 500; }
 
 .scene-visit { grid-template-columns: minmax(0, 1fr); align-items: end; }
@@ -215,11 +260,13 @@ a { color: inherit; }
 .trio li:nth-child(3) { padding-left: clamp(0px, 12vw, 192px); }
 @media (max-width: 600px) { .trio li { flex-direction: column; gap: 0; } }
 
-.offer { display: grid; gap: 18px; grid-template-columns: minmax(0, 1fr); align-items: center; }
-.offer .amount { font-family: var(--display); font-size: clamp(4.4rem, 2rem + 9vw, 9.5rem); line-height: 0.88; color: var(--bronze); font-variant-numeric: lining-nums; }
-.offer .terms { display: grid; gap: 12px; padding-top: 18px; border-top: 1px solid var(--rule-dark); }
-.offer .terms .h3 { color: var(--on-dark); }
-@media (min-width: 760px) { .offer { grid-template-columns: auto minmax(0, 1fr); gap: 52px; } .offer .terms { border-top: 0; border-left: 1px solid var(--rule-dark); padding: 6px 0 6px 40px; } }
+.offer { display: grid; gap: 18px; grid-template-columns: minmax(0, 1fr); align-items: center; background: var(--ivory); color: var(--ink); padding: clamp(24px, 4.5vw, 56px); box-shadow: 0 40px 80px -48px rgba(0, 0, 0, 0.9); }
+.scene .offer p { color: var(--ink-soft); }
+.offer .kicker { color: var(--ink-soft); }
+.scene .offer .amount { font-family: var(--display); font-size: clamp(4rem, 2rem + 9vw, 9.5rem); line-height: 0.88; color: var(--bronze-ink); font-variant-numeric: lining-nums; }
+.offer .terms { display: grid; gap: 12px; padding-top: 18px; border-top: 1px solid var(--rule-light); }
+.scene .offer .terms .h3 { color: var(--ink); }
+@media (min-width: 760px) { .offer { grid-template-columns: auto minmax(0, 1fr); gap: 52px; } .offer .terms { border-top: 0; border-left: 1px solid var(--rule-light); padding: 6px 0 6px 40px; } }
 
 .office { display: grid; gap: 22px; }
 .office .noise { font-size: clamp(0.8rem, 0.72rem + 0.3vw, 0.94rem); font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(239, 233, 222, 0.34); line-height: 2.2; max-width: 44rem; }
@@ -233,13 +280,8 @@ a { color: inherit; }
 .tile.sym { color: var(--bronze); }
 .board-caption { max-width: 46rem; }
 .board-caption strong { color: var(--on-dark); font-weight: 500; }
-@media (prefers-reduced-motion: no-preference) {
-  @supports (animation-timeline: view()) {
-    .tile { animation: flip linear both; animation-timeline: view(); animation-range: entry 15% cover 40%; }
-    .tile:nth-child(2n) { animation-range: entry 20% cover 45%; }
-    @keyframes flip { from { transform: rotateX(88deg); opacity: .25; } to { transform: none; opacity: 1; } }
-  }
-}
+.js-motion #scene-5 .tile { transform: rotateX(88deg); opacity: 0.2; transition: transform 600ms var(--ease), opacity 600ms var(--ease); transition-delay: calc(240ms + var(--t, 0) * 70ms); }
+.js-motion #scene-5.is-in .tile { transform: none; opacity: 1; }
 
 .decision { display: grid; gap: 28px; }
 .decision .big { font-family: var(--display); font-size: clamp(2.6rem, 1.6rem + 4.6vw, 6.4rem); line-height: 1.02; letter-spacing: -0.02em; color: var(--on-dark); max-width: 14ch; }
@@ -248,6 +290,7 @@ a { color: inherit; }
 @media (min-width: 900px) { .decision .after { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 56px; align-items: start; } }
 
 /* CAREER: four stages on a fine line */
+#career .wrap { padding-bottom: calc(var(--band-y) + var(--overlap)); }
 .career-head { display: grid; gap: 22px; grid-template-columns: minmax(0, 1fr); margin-bottom: clamp(44px, 6vw, 76px); }
 .career-head .chapter { margin-bottom: 0; }
 @media (min-width: 900px) { .career-head { grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); align-items: end; } }
@@ -268,14 +311,38 @@ a { color: inherit; }
 }
 
 /* MILESTONES: a figure ledger */
+#milestones .wrap { padding-top: 0; }
+.m-panel { position: relative; z-index: 1; margin-top: calc(-1 * var(--overlap)); background: var(--charcoal-3); border: 1px solid var(--rule-dark); padding: clamp(24px, 4.5vw, 64px); box-shadow: 0 50px 90px -60px rgba(0, 0, 0, 0.9); }
 .ledger { display: grid; grid-template-columns: minmax(0, 1fr); border-top: 1px solid var(--rule-dark); }
 @media (min-width: 760px) { .ledger { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 32px; } }
-@media (min-width: 1080px) { .ledger { grid-template-columns: repeat(4, minmax(0, 1fr)); } .stat .fig { font-size: clamp(2.4rem, 1rem + 1.9vw, 3.1rem); } }
+/* Figures size to their own column, so long values never cross into the next one */
+.stat { container-type: inline-size; }
+
 .stat { display: grid; gap: 10px; align-content: start; padding-block: 28px; border-bottom: 1px solid var(--rule-dark); }
-.stat .fig { font-family: var(--display); font-size: clamp(2.5rem, 1.7rem + 2.4vw, 3.6rem); overflow-wrap: anywhere; line-height: 1.02; color: var(--on-dark); font-variant-numeric: lining-nums; }
+.stat .fig { font-family: var(--display); font-size: clamp(2.3rem, 1.7rem + 2.4vw, 3.4rem); line-height: 1.02; color: var(--on-dark); font-variant-numeric: lining-nums; }
 .stat .fig.bronze { color: var(--bronze); }
+@supports (font-size: 1cqi) { .stat .fig { font-size: clamp(2rem, 15cqi, 3.4rem); } }
 .stat p { color: var(--on-dark-soft); font-size: 1rem; line-height: 1.55; max-width: 26ch; }
 .ledger-note { margin-top: 28px; max-width: 64ch; }
+.scale { margin-top: clamp(40px, 5vw, 64px); display: grid; gap: 16px; }
+.scale-plot { display: grid; gap: 6px; padding-top: 30px; }
+.axis { position: relative; height: 1px; background: var(--rule-dark); margin-inline: 6px; }
+.axis span { position: absolute; left: var(--x); bottom: 10px; transform: translateX(-50%); font-size: var(--t-meta); color: var(--on-dark-soft); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.axis span:first-child { transform: none; }
+.axis span:last-child { transform: translateX(-100%); }
+.axis span::after { content: ""; position: absolute; left: 50%; top: calc(100% + 6px); width: 1px; height: 8px; background: var(--rule-dark); }
+.axis span:first-child::after { left: 0; }
+.axis span:last-child::after { left: 100%; }
+.track { position: relative; min-height: 48px; margin-inline: 6px; }
+.track .dot { position: absolute; left: var(--x); top: 24px; width: 11px; height: 11px; border-radius: 50%; background: var(--on-dark); transform: translate(-50%, -50%); }
+.track .bar { position: absolute; left: var(--x); width: var(--w); top: 24px; height: 3px; transform: translateY(-50%); transform-origin: 0 50%; background: linear-gradient(90deg, var(--bronze), rgba(191, 154, 98, 0)); }
+.track .lbl { position: absolute; top: 24px; transform: translateY(-50%); left: calc(var(--x) + 16px); max-width: calc(100% - var(--x) - 16px); font-size: clamp(0.82rem, 0.78rem + 0.2vw, 0.95rem); line-height: 1.3; color: var(--on-dark); }
+.track.to-left .lbl { left: auto; right: calc(100% - var(--x) + 16px); max-width: calc(var(--x) - 16px); text-align: right; }
+.track.key .dot { background: var(--bronze); }
+.js-motion .scale .dot, .js-motion .scale .lbl { opacity: 0; transition: opacity 500ms var(--ease); transition-delay: calc(200ms + var(--s, 0) * 160ms); }
+.js-motion .scale .bar { transform: translateY(-50%) scaleX(0); transition: transform 900ms var(--ease); transition-delay: calc(200ms + var(--s, 0) * 160ms); }
+.js-motion .scale.is-in .dot, .js-motion .scale.is-in .lbl { opacity: 1; }
+.js-motion .scale.is-in .bar { transform: translateY(-50%) scaleX(1); }
 
 /* LESSONS: photo, a short account, three numbered lessons */
 .lessons-top { display: grid; gap: clamp(36px, 6vw, 80px); grid-template-columns: minmax(0, 1fr); align-items: center; }
@@ -286,8 +353,9 @@ a { color: inherit; }
 .lessons-top .prose p { color: var(--on-dark-soft); }
 .lessons-top .prose p strong { color: var(--on-dark); font-weight: 500; }
 .numbered { margin-top: clamp(64px, 9vw, 112px); list-style: none; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; counter-reset: lesson; }
-@media (min-width: 860px) { .numbered { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; } }
-.numbered li { counter-increment: lesson; display: grid; gap: 10px; align-content: start; padding-block: 26px; border-top: 1px solid var(--rule-dark); }
+.numbered { gap: 14px; }
+@media (min-width: 860px) { .numbered { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; } }
+.numbered li { counter-increment: lesson; display: grid; gap: 10px; align-content: start; padding: clamp(24px, 3vw, 36px); border: 1px solid var(--rule-dark); background: var(--charcoal-3); }
 .numbered li::before { content: counter(lesson, decimal-leading-zero); font-family: var(--display); font-size: clamp(2.6rem, 2rem + 2vw, 3.8rem); line-height: 1; color: var(--on-dark-soft); font-variant-numeric: lining-nums; }
 .numbered .h3 { color: var(--on-dark); font-size: clamp(1.4rem, 1.25rem + 0.5vw, 1.8rem); }
 .numbered p { color: var(--on-dark-soft); font-size: 1rem; max-width: 34ch; }
@@ -303,7 +371,11 @@ a { color: inherit; }
 
 /* PHILOSOPHY: values against a night photograph */
 .values { display: grid; gap: clamp(40px, 6vw, 88px); grid-template-columns: minmax(0, 1fr); align-items: center; }
-@media (min-width: 980px) { .values { grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); } }
+@media (min-width: 980px) {
+  .values { grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); align-items: start; }
+  #values .photo { margin-top: calc(-1 * var(--lift) - var(--band-y)); position: relative; z-index: 1; }
+  #lessons .wrap { padding-bottom: calc(var(--band-y) + var(--lift)); }
+}
 .values .statement { font-family: var(--display); font-size: clamp(2.6rem, 1.5rem + 4.4vw, 5.4rem); line-height: 1.04; letter-spacing: -0.02em; max-width: 13ch; margin-top: 14px; }
 .ledger-shift { margin-top: clamp(36px, 5vw, 56px); display: grid; gap: 18px; }
 .was { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 18px; }
@@ -321,7 +393,7 @@ a { color: inherit; }
 .next-list { list-style: none; padding: 0; display: grid; }
 .next-list li { display: grid; gap: 6px; padding-block: 22px; border-top: 1px solid var(--rule-light); }
 .next-list li:last-child { border-bottom: 1px solid var(--rule-light); }
-.next-list p { color: var(--ink-soft); max-width: 52ch; }
+.next-list p { color: var(--ink-soft); max-width: 46ch; }
 
 /* CONTACT */
 .contact-grid { display: grid; gap: clamp(36px, 6vw, 80px); grid-template-columns: minmax(0, 1fr); align-items: center; }
@@ -336,14 +408,23 @@ a { color: inherit; }
 /* Footer */
 .site-foot .wrap { padding-block: 36px calc(36px + env(safe-area-inset-bottom, 0px)); }
 .site-foot .row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 14px; }
-.site-foot a { text-decoration: none; }
+.site-foot a { text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; }
+.site-foot .u-link { background-position: 0 calc(100% - 10px), 0 calc(100% - 10px); }
 
-@media (prefers-reduced-motion: no-preference) {
-  @supports (animation-timeline: view()) {
-    .reveal { animation: settle linear both; animation-timeline: view(); animation-range: entry 0% cover 18%; }
-    @keyframes settle { from { opacity: .35; transform: translateY(18px); } to { opacity: 1; transform: none; } }
-  }
-}
+/* Motion: one time reveals. Content stays visible when JavaScript, IntersectionObserver or motion is unavailable. */
+.js-motion [data-reveal] { opacity: 0; transform: translateY(16px); transition: opacity var(--dur-enter) var(--ease), transform var(--dur-enter) var(--ease); transition-delay: calc(var(--i, 0) * 90ms); }
+.js-motion [data-reveal].is-in { opacity: 1; transform: none; }
+.js-motion [data-reveal="image"] { opacity: 1; transform: none; }
+.js-motion [data-reveal="image"] .frame { clip-path: inset(0 0 14% 0); transition: clip-path 900ms var(--ease); }
+.js-motion [data-reveal="image"] img { transform: scale(1.06); transition: transform 1200ms var(--ease); }
+.js-motion [data-reveal="image"].is-in .frame { clip-path: inset(0 0 0 0); }
+.js-motion [data-reveal="image"].is-in img { transform: none; }
+.js-motion .scale[data-reveal] { transform: none; }
+
+/* Very large screens: keep reading widths, let compositions breathe */
+@media (min-width: 1920px) { :root { --t-body: 1.25rem; --t-lede: 1.5rem; } }
+/* Very small phones */
+@media (max-width: 359px) { .wordmark { font-size: 1.12rem; } .btn { padding-inline: 18px; } .trio li { font-size: 1.85rem; } }
 </style>
 </head>
 <body>
@@ -396,7 +477,7 @@ a { color: inherit; }
             </div>
           </div>
           <figure class="hero-photo">
-            <div class="frame"><img src="images/hero-portrait.jpg" width="1000" height="1250" alt="Alexander Marshall in a red velvet blazer and tie, smiling on an office staircase" fetchpriority="high" decoding="async"></div>
+            <div class="frame"><img src="images/hero-portrait.jpg" srcset="images/hero-portrait-600.jpg 600w, images/hero-portrait.jpg 1000w" sizes="(min-width: 900px) 42vw, 100vw" width="1000" height="1250" alt="Alexander Marshall in a red velvet blazer and tie, smiling on an office staircase" fetchpriority="high" decoding="async"></div>
           </figure>
         </div>
 
@@ -423,12 +504,12 @@ a { color: inherit; }
         <div class="origin">
           <nav class="rail" aria-label="Moments in the beginning">
             <ol>
-              <li><a href="#scene-1"><span>1</span>The visit</a></li>
-              <li><a href="#scene-2"><span>2</span>The stranger</a></li>
-              <li><a href="#scene-3"><span>3</span>The offer</a></li>
-              <li><a href="#scene-4"><span>4</span>The office</a></li>
-              <li><a href="#scene-5"><span>5</span>The board</a></li>
-              <li><a href="#scene-6"><span>6</span>The decision</a></li>
+              <li><a href="#scene-1"><span>1</span><b>The visit</b></a></li>
+              <li><a href="#scene-2"><span>2</span><b>The stranger</b></a></li>
+              <li><a href="#scene-3"><span>3</span><b>The offer</b></a></li>
+              <li><a href="#scene-4"><span>4</span><b>The office</b></a></li>
+              <li><a href="#scene-5"><span>5</span><b>The board</b></a></li>
+              <li><a href="#scene-6"><span>6</span><b>The decision</b></a></li>
             </ol>
           </nav>
 
@@ -442,7 +523,7 @@ a { color: inherit; }
               </div>
             </article>
 
-            <article class="scene reveal" id="scene-2" aria-labelledby="s2">
+            <article class="scene" data-reveal id="scene-2" aria-labelledby="s2">
               <p class="scene-no"><span>2</span><span id="s2">The stranger</span></p>
               <ul class="trio">
                 <li><span class="k">near</span>a bank,</li>
@@ -452,7 +533,7 @@ a { color: inherit; }
               <p>A man from Wall Street. Somehow they started talking, and a passing exchange became <strong>ten or fifteen minutes</strong> about business, money and a different path.</p>
             </article>
 
-            <article class="scene reveal" id="scene-3" aria-labelledby="s3">
+            <article class="scene" data-reveal id="scene-3" aria-labelledby="s3">
               <p class="scene-no"><span>3</span><span id="s3">The offer</span></p>
               <div class="offer">
                 <p class="amount">$500</p>
@@ -463,7 +544,7 @@ a { color: inherit; }
               </div>
             </article>
 
-            <article class="scene reveal" id="scene-4" aria-labelledby="s4">
+            <article class="scene" data-reveal id="scene-4" aria-labelledby="s4">
               <p class="scene-no"><span>4</span><span id="s4">The office</span></p>
               <div class="office">
                 <p class="noise" aria-hidden="true">Phones ringing, call after call, deals closing, the next opportunity, controlled chaos</p>
@@ -472,16 +553,16 @@ a { color: inherit; }
               </div>
             </article>
 
-            <article class="scene reveal" id="scene-5" aria-labelledby="s5">
+            <article class="scene" data-reveal id="scene-5" aria-labelledby="s5">
               <p class="scene-no"><span>5</span><span id="s5">The board</span></p>
               <div class="board" role="img" aria-label="The office sales board: more than one hundred thousand dollars in sales in one week">
                 <div class="board-top"><span class="meta">Sales floor</span><span class="meta">One week</span></div>
-                <div class="tiles" aria-hidden="true"><span class="tile sym">$</span><span class="tile">1</span><span class="tile">0</span><span class="tile">0</span><span class="tile sym">,</span><span class="tile">0</span><span class="tile">0</span><span class="tile">0</span><span class="tile sym">+</span></div>
+                <div class="tiles" aria-hidden="true"><span style="--t:0" class="tile sym">$</span><span style="--t:1" class="tile">1</span><span style="--t:2" class="tile">0</span><span style="--t:3" class="tile">0</span><span style="--t:4" class="tile sym">,</span><span style="--t:5" class="tile">0</span><span style="--t:6" class="tile">0</span><span style="--t:7" class="tile">0</span><span style="--t:8" class="tile sym">+</span></div>
               </div>
               <p class="board-caption meta">The office's total sales for one week, as shown on its board. <strong>Not Alexander's income, and not his own sales.</strong> It was proof of a world he had not known existed.</p>
             </article>
 
-            <article class="scene reveal" id="scene-6" aria-labelledby="s6">
+            <article class="scene" data-reveal id="scene-6" aria-labelledby="s6">
               <p class="scene-no"><span>6</span><span id="s6">The decision</span></p>
               <div class="decision">
                 <p class="big">He never went back to UPS.</p>
@@ -509,10 +590,10 @@ a { color: inherit; }
         </div>
 
         <ol class="stages">
-          <li class="reveal"><span class="meta">Before sales</span><h3 class="h3">Marine Corps, then UPS</h3><p>Honorable Discharge, then a part time manager at UPS.</p></li>
-          <li class="reveal"><span class="meta">Learning by doing</span><h3 class="h3">Every seat</h3><p>Sales, account management, SEO, websites, business development and day to day operations.</p></li>
-          <li class="reveal"><span class="meta">Ownership</span><h3 class="h3">Owner and partner</h3><p>From employee to business owner, then partnerships and investments in other companies.</p></li>
-          <li class="reveal now"><span class="meta">Today</span><h3 class="h3">Growth through people</h3><p>Consulting, growth operations and client relationships, with a team of about ten.</p></li>
+          <li data-reveal style="--i:0"><span class="meta">Before sales</span><h3 class="h3">Marine Corps, then UPS</h3><p>Honorable Discharge, then a part time manager at UPS.</p></li>
+          <li data-reveal style="--i:1"><span class="meta">Learning by doing</span><h3 class="h3">Every seat</h3><p>Sales, account management, SEO, websites, business development and day to day operations.</p></li>
+          <li data-reveal style="--i:2"><span class="meta">Ownership</span><h3 class="h3">Owner and partner</h3><p>From employee to business owner, then partnerships and investments in other companies.</p></li>
+          <li class="now" data-reveal style="--i:3"><span class="meta">Today</span><h3 class="h3">Growth through people</h3><p>Consulting, growth operations and client relationships, with a team of about ten.</p></li>
         </ol>
       </div>
     </div>
@@ -521,17 +602,28 @@ a { color: inherit; }
   <section class="band dark" id="milestones" aria-labelledby="ch3-title">
     <div class="wrap">
       <div class="inner">
+        <div class="m-panel">
         <div class="chapter">
           <p class="kicker"><span>03</span>Milestones</p>
           <h2 class="h2" id="ch3-title">The numbers behind the journey.</h2>
         </div>
         <div class="ledger">
-          <div class="stat reveal"><span class="meta">First year as an employee</span><span class="fig">$100,000</span><p>His first $100,000 in sales.</p></div>
-          <div class="stat reveal"><span class="meta">First year as an owner</span><span class="fig bronze">Seven figures</span><p>Reached in his first year owning a business.</p></div>
-          <div class="stat reveal"><span class="meta">Across his career</span><span class="fig">Millions</span><p>In business and sales he contributed to, including multi seven figure results.</p></div>
-          <div class="stat reveal"><span class="meta">Service</span><span class="fig">Honorable</span><p>Discharge, United States Marine Corps.</p></div>
+          <div class="stat" data-reveal style="--i:0"><span class="meta">First year as an employee</span><span class="fig">$100,000</span><p>His first $100,000 in sales.</p></div>
+          <div class="stat" data-reveal style="--i:1"><span class="meta">First year as an owner</span><span class="fig bronze">Seven figures</span><p>Reached in his first year owning a business.</p></div>
+          <div class="stat" data-reveal style="--i:2"><span class="meta">Across his career</span><span class="fig">Millions</span><p>In business and sales he contributed to, including multi seven figure results.</p></div>
+          <div class="stat" data-reveal style="--i:3"><span class="meta">Service</span><span class="fig">Honorable</span><p>Discharge, United States Marine Corps.</p></div>
         </div>
+        <figure class="scale" data-reveal aria-labelledby="scale-cap">
+          <div class="scale-plot" role="img" aria-label="Order of magnitude on a log scale from ten thousand to ten million dollars: first year in sales at one hundred thousand dollars, first year as an owner at seven figures, career contributions in the millions.">
+            <div class="axis" aria-hidden="true"><span style="--x:0%">$10K</span><span style="--x:33.333%">$100K</span><span style="--x:66.667%">$1M</span><span style="--x:100%">$10M</span></div>
+            <div class="track" style="--x:33.333%; --s:0" aria-hidden="true"><span class="dot"></span><span class="lbl">First year in sales</span></div>
+            <div class="track key to-left" style="--x:66.667%; --s:1" aria-hidden="true"><span class="dot"></span><span class="lbl">First year as an owner</span></div>
+            <div class="track to-left" style="--x:66.667%; --w:31%; --s:2" aria-hidden="true"><span class="bar"></span><span class="lbl">Across his career</span></div>
+          </div>
+          <figcaption class="meta" id="scale-cap">The same figures as an order of magnitude on a log scale, not exact amounts.</figcaption>
+        </figure>
         <p class="ledger-note meta">These are business and sales figures Alexander contributed to, generated or managed, often with teams and partners. They are not his personal income or his current company's revenue, and they have not been independently audited.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -540,8 +632,8 @@ a { color: inherit; }
     <div class="wrap">
       <div class="inner">
         <div class="lessons-top">
-          <figure class="photo reveal">
-            <div class="frame"><img src="images/portrait-on-the-water.jpg" width="800" height="1000" loading="lazy" decoding="async" alt="Alexander Marshall laughing on a boat on a summer day, making a heart with his hands"></div>
+          <figure class="photo" data-reveal="image">
+            <div class="frame"><img src="images/portrait-on-the-water.jpg" srcset="images/portrait-on-the-water-480.jpg 480w, images/portrait-on-the-water.jpg 800w" sizes="(min-width: 980px) 36vw, 100vw" width="800" height="1000" loading="lazy" decoding="async" alt="Alexander Marshall laughing on a boat on a summer day, making a heart with his hands"></div>
           </figure>
           <div>
             <div class="chapter">
@@ -557,14 +649,14 @@ a { color: inherit; }
         </div>
 
         <ol class="numbered">
-          <li class="reveal"><h3 class="h3">Revenue is not profit.</h3><p>Sustainable building takes patience and discipline.</p></li>
-          <li class="reveal"><h3 class="h3">Trust has to be earned.</h3><p>Opportunity comes with responsibility. Generosity needs boundaries.</p></li>
-          <li class="reveal"><h3 class="h3">Build what outlasts any one person.</h3><p>Systems, standards and culture keep a company moving when people change direction.</p></li>
+          <li data-reveal style="--i:0"><h3 class="h3">Revenue is not profit.</h3><p>Sustainable building takes patience and discipline.</p></li>
+          <li data-reveal style="--i:1"><h3 class="h3">Trust has to be earned.</h3><p>Opportunity comes with responsibility. Generosity needs boundaries.</p></li>
+          <li data-reveal style="--i:2"><h3 class="h3">Build what outlasts any one person.</h3><p>Systems, standards and culture keep a company moving when people change direction.</p></li>
         </ol>
 
-        <blockquote class="quote closing-quote reveal">Some people are meant to stay for the entire journey, and others are meant to be part of a chapter.</blockquote>
+        <blockquote class="quote closing-quote" data-reveal>Some people are meant to stay for the entire journey, and others are meant to be part of a chapter.</blockquote>
 
-        <div class="works">
+        <div class="works" data-reveal>
           <p class="kicker">How he works</p>
           <dl>
             <div><dt>People, never numbers</dt><dd>Customers and employees should feel their time and effort matter.</dd></div>
@@ -596,8 +688,8 @@ a { color: inherit; }
               <p class="soft">Create value, treat people well, and enjoy the life you are building while you build it.</p>
             </div>
           </div>
-          <figure class="photo reveal">
-            <div class="frame"><img src="images/portrait-night-water.jpg" width="800" height="1000" loading="lazy" decoding="async" alt="Alexander Marshall smiling on a dock at night, with waterfront houses behind him"></div>
+          <figure class="photo" data-reveal="image">
+            <div class="frame"><img src="images/portrait-night-water.jpg" srcset="images/portrait-night-water-480.jpg 480w, images/portrait-night-water.jpg 800w" sizes="(min-width: 980px) 36vw, 100vw" width="800" height="1000" loading="lazy" decoding="async" alt="Alexander Marshall smiling on a dock at night, with waterfront houses behind him"></div>
           </figure>
         </div>
       </div>
@@ -626,8 +718,8 @@ a { color: inherit; }
     <div class="wrap">
       <div class="inner">
         <div class="contact-grid">
-          <figure class="photo reveal">
-            <div class="frame"><img src="images/portrait-times-square.jpg" width="800" height="1000" loading="lazy" decoding="async" alt="Alexander Marshall smiling in Times Square at night"></div>
+          <figure class="photo" data-reveal="image">
+            <div class="frame"><img src="images/portrait-times-square.jpg" srcset="images/portrait-times-square-480.jpg 480w, images/portrait-times-square.jpg 800w" sizes="(min-width: 940px) 36vw, 100vw" width="800" height="1000" loading="lazy" decoding="async" alt="Alexander Marshall smiling in Times Square at night"></div>
           </figure>
           <div class="contact-copy">
             <p class="kicker">Start a conversation</p>
@@ -651,7 +743,7 @@ a { color: inherit; }
       <div class="row">
         <a class="wordmark" href="#top">Alexander Marshall</a>
         <span class="meta">New York, NY &nbsp;·&nbsp; © <span id="year">2026</span></span>
-        <a class="text-link meta" href="#top">Back to top</a>
+        <a class="u-link meta" href="#top">Back to top</a>
       </div>
     </div>
   </div>
@@ -683,7 +775,28 @@ a { color: inherit; }
   }
 
   var menu = document.querySelector('.menu');
-  if (menu) menu.addEventListener('click', function (e) { if (e.target.closest('a')) menu.open = false; });
+  if (menu) {
+    menu.addEventListener('click', function (e) { if (e.target.closest('a')) menu.open = false; });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && menu.open) { menu.open = false; menu.querySelector('summary').focus(); } });
+    document.addEventListener('click', function (e) { if (menu.open && !menu.contains(e.target)) menu.open = false; });
+  }
+
+  // Header: compact once the page has scrolled.
+  var head = document.querySelector('.site-head');
+  var hero = document.getElementById('top');
+  if (head && hero && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) { head.classList.toggle('is-scrolled', !es[0].isIntersecting); }, { rootMargin: '-90px 0px 0px 0px', threshold: 0 })
+      .observe(document.querySelector('.hero-copy') || hero);
+  }
+
+  // One time reveals.
+  if (document.documentElement.classList.contains('js-motion')) {
+    var ro = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); ro.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+    document.querySelectorAll('[data-reveal]').forEach(function (el) { ro.observe(el); });
+  }
+  window.__motionReady = true;
 
   var links = document.querySelectorAll('.rail a');
   if ('IntersectionObserver' in window && links.length) {
@@ -694,6 +807,8 @@ a { color: inherit; }
         if (en.isIntersecting) {
           links.forEach(function (l) { l.removeAttribute('aria-current'); });
           var l = map[en.target.id]; if (l) l.setAttribute('aria-current', 'step');
+          var idx = Array.prototype.indexOf.call(links, l);
+          if (idx > -1) l.closest('ol').style.setProperty('--progress', ((idx + 1) / links.length * 100) + '%');
         }
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
